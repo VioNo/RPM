@@ -64,31 +64,34 @@ namespace RPM
 
         private void SignUpButton_Click(object sender, RoutedEventArgs e)
         {
-         
+            Registr(LoginTextBox.Text, PasswordBox.Password, EmailTextBox.Text, PhoneTextBox.Text);
+        }
+        public bool Registr(string login, string password, string email, string phone )
+        {
             var regex = new Regex(@"^\+7\d{10}$");
             StringBuilder errors = new StringBuilder();
             bool hasEnglishLetter = false;
             bool hasNumber = false;
 
-            if (string.IsNullOrEmpty(LoginTextBox.Text)) errors.AppendLine("Укажите логин");
-            if (IsUserExists("Login", LoginTextBox.Text)) errors.AppendLine("Пользователь с таким логином уже существует");
-            if (IsUserExists("Email", EmailTextBox.Text)) errors.AppendLine("Пользователь с таким email уже существует");
-            if (IsUserExists("Phone", PhoneTextBox.Text)) errors.AppendLine("Пользователь с таким телефоном уже существует");
-            if (PhoneTextBox.Text.Length != 12) errors.AppendLine("Телефон должен состоять из 12 символов");
-            foreach (char c in PasswordBox.Password)
+            if (string.IsNullOrEmpty(login)) errors.AppendLine("Укажите логин");
+            if (IsUserExists("Login", login)) errors.AppendLine("Пользователь с таким логином уже существует");
+            if (IsUserExists("Email", email)) errors.AppendLine("Пользователь с таким email уже существует");
+            if (IsUserExists("Phone", phone)) errors.AppendLine("Пользователь с таким телефоном уже существует");
+            if (phone.Length != 12) errors.AppendLine("Телефон должен состоять из 12 символов");
+            foreach (char c in password)
             {
                 if (c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z') hasEnglishLetter = true;
                 if (c >= '0' && c <= '9') hasNumber = true;
             }
-            if (PasswordBox.Password.Length < 6) errors.AppendLine("Пароль должен быть больше 6 символов");
-            if (!regex.IsMatch(PhoneTextBox.Text)) errors.AppendLine("Укажите номер телефона в формате +7XXXXXXXXXX");
+            if (password.Length < 6) errors.AppendLine("Пароль должен быть больше 6 символов");
+            if (!regex.IsMatch(phone)) errors.AppendLine("Укажите номер телефона в формате +7XXXXXXXXXX");
             if (!hasEnglishLetter) errors.AppendLine("Пароль должен содержать английские буквы");
             if (!hasNumber) errors.AppendLine("Пароль должен содержать хотя бы одну цифру");
-            if (!IsValidEmail(EmailTextBox.Text)) errors.AppendLine("Укажите корректный email");
+            if (!IsValidEmail(email)) errors.AppendLine("Укажите корректный email");
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
-                return;
+                return false;
             }
             else
             {
@@ -96,13 +99,13 @@ namespace RPM
                 {
                     var userObject = new Clients
                     {
-                        Login = LoginTextBox.Text,
-                        Password = GetHash(PasswordBox.Password),
-                        Phone = PhoneTextBox.Text,
-                        Email = EmailTextBox.Text,
-                        Name = "",
-                        Surname = "",
-                        Address = "",
+                        Login = login,
+                        Password = GetHash(password),
+                        Phone = phone,
+                        Email = email,
+                        Name = "Name",
+                        Surname = "Surname",
+                        Address = "Address",
                     };
                     try
                     {
@@ -114,8 +117,9 @@ namespace RPM
                         MessageBox.Show($"Ошибка при сохранении данных: {ex.Message}");
                     }
                     MessageBox.Show("Вы успешно зарегистрировались");
+                    return true;
                 }
-               
+
             }
         }
 
