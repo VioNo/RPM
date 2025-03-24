@@ -12,7 +12,7 @@ namespace UnitTestProject
         {
             var page = new MainPage();
             Assert.IsTrue(page.Auth("test", "test11"));
-            Assert.IsFalse(page.Auth("user1", "12345qwe"));
+            Assert.IsFalse(page.Auth("user1", "user123"));
             Assert.IsFalse(page.Auth("", "123йwe"));
             Assert.IsFalse(page.Auth(" ", " "));
         }

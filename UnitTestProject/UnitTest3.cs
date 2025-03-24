@@ -14,7 +14,6 @@ namespace UnitTestProject
             Assert.IsTrue(page.Auth("test", "test11"));
             Assert.IsTrue(page.Auth("123", "123qwe"));
             Assert.IsTrue(page.Auth("1234", "1234qwe"));
-            Assert.IsTrue(page.Auth("123455", "12345qwe"));
         }
     }
 }

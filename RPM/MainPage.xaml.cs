@@ -75,14 +75,13 @@ namespace RPM
 
             if (string.IsNullOrEmpty(login)) errors.AppendLine("Укажите логин");
             if (IsUserExists("Login", login)) errors.AppendLine("Пользователь с таким логином уже существует");
-            if (IsUserExists("Email", email)) errors.AppendLine("Пользователь с таким email уже существует");
-            if (IsUserExists("Phone", phone)) errors.AppendLine("Пользователь с таким телефоном уже существует");
             if (phone.Length != 12) errors.AppendLine("Телефон должен состоять из 12 символов");
             foreach (char c in password)
             {
                 if (c >= 'A' && c <= 'Z' || c >= 'a' && c <= 'z') hasEnglishLetter = true;
                 if (c >= '0' && c <= '9') hasNumber = true;
             }
+            if (IsUserExists("Password", GetHash(password))) errors.AppendLine("Пользователь с таким паролем уже существует");
             if (password.Length < 6) errors.AppendLine("Пароль должен быть больше 6 символов");
             if (!regex.IsMatch(phone)) errors.AppendLine("Укажите номер телефона в формате +7XXXXXXXXXX");
             if (!hasEnglishLetter) errors.AppendLine("Пароль должен содержать английские буквы");
@@ -152,10 +151,8 @@ namespace RPM
                 {
                     case "Login":
                         return db.Clients.AsNoTracking().Any(u => u.Login == value);
-                    case "Email":
-                        return db.Clients.AsNoTracking().Any(u => u.Email == value);
-                    case "Phone":
-                        return db.Clients.AsNoTracking().Any(u => u.Phone == value);
+                    case "Password":
+                        return db.Clients.AsNoTracking().Any(u => u.Password == value);
                     default:
                         throw new ArgumentException("Invalid column name");
                 }

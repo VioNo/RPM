@@ -11,7 +11,7 @@ namespace UnitTestProject
         public void AuthTestNegative()
         {
             var page = new MainPage();
-            Assert.IsFalse(page.Auth("user1", "12345qwe"));
+            Assert.IsFalse(page.Auth("user1", "1234qwe"));
             Assert.IsFalse(page.Auth("user1", "test11"));
             Assert.IsFalse(page.Auth("", "123йwe"));
             Assert.IsFalse(page.Auth("", ""));
