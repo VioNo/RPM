@@ -1,0 +1,38 @@
+﻿<Page x:Class="RPM.DescriptionDB"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RPM"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="DescriptionDB">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="PageStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="250"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="90"/>
+        </Grid.RowDefinitions>
+        <Frame x:Name="DescriptionDBPage" Grid.ColumnSpan="3" Grid.RowSpan="5" />
+        <Button x:Name="ProductsButton" Grid.Row="1" Grid.Column="0" Content="Products" Click="ProductsButton_Click" />
+        <Button x:Name="EmployeesButton"  Grid.Row="1" Grid.Column="1" Content="Employees" Click="EmployeesButton_Click" />
+        <Button x:Name="GrapeVarietiesButton" Grid.Row="1" Grid.Column="2" Content="GrapeVarieties" Click="GrapeVarietiesButton_Click"/>
+        <Button x:Name="StorageButton" Grid.Row="2" Grid.Column="0" Content="Storage" Click="StorageButton_Click"/>
+        <Button x:Name="ClientsButton" Grid.Row="2" Grid.Column="2" Content="Clients" Click="ClientsButton_Click"/>
+        <Button x:Name="BackButton" Grid.Row="3" Grid.Column="1" Content="Back" Click="BackButton_Click"/>
+    </Grid>
+</Page>

@@ -1,0 +1,1289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище DistilleryRassvetModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="IDClient" />
+          </Key>
+          <Property Name="IDClient" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="100" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Climate">
+          <Key>
+            <PropertyRef Name="IDClimate" />
+          </Key>
+          <Property Name="IDClimate" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClimateDescription" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="IDEmployee" />
+          </Key>
+          <Property Name="IDEmployee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDJobTitle" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Phone" Type="int" Nullable="false" />
+          <Property Name="DataPassport" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DateStartedWork" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fermentation">
+          <Key>
+            <PropertyRef Name="IDFermentation" />
+          </Key>
+          <Property Name="IDFermentation" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDYield" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="Temperature" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="LevelSugar" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="IDParty" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IDGrowingConditions" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GrapeVarieties">
+          <Key>
+            <PropertyRef Name="IDGrapeVarieties" />
+          </Key>
+          <Property Name="IDGrapeVarieties" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameGrapeVarieties" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="GrowingConditions">
+          <Key>
+            <PropertyRef Name="IDGrowingConditions" />
+          </Key>
+          <Property Name="IDGrowingConditions" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDGrapeVarieties" Type="int" Nullable="false" />
+          <Property Name="IDSoil" Type="int" Nullable="false" />
+          <Property Name="IDWater" Type="int" Nullable="false" />
+          <Property Name="IDClimate" Type="int" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="JobTitles">
+          <Key>
+            <PropertyRef Name="IDJobTitle" />
+          </Key>
+          <Property Name="IDJobTitle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="IDOrders" />
+          </Key>
+          <Property Name="IDOrders" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDClient" Type="int" Nullable="false" />
+          <Property Name="IDProduct" Type="int" Nullable="false" />
+          <Property Name="IDEmployee" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="DateOrder" Type="date" Nullable="false" />
+          <Property Name="Sum" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IDPayment" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Party">
+          <Key>
+            <PropertyRef Name="IDParty" />
+          </Key>
+          <Property Name="IDParty" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartyDescription" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="IDPayment" />
+          </Key>
+          <Property Name="IDPayment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentMethod" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PaymentsOrder">
+          <Key>
+            <PropertyRef Name="IDOrders" />
+          </Key>
+          <Property Name="IDOrders" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sum" Type="money" Nullable="false" />
+          <Property Name="DatePayments" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="IDProduct" />
+          </Key>
+          <Property Name="IDProduct" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDParty" Type="int" Nullable="false" />
+          <Property Name="IDStorage" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="primecost" Type="money" />
+          <Property Name="Description" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Shipments">
+          <Key>
+            <PropertyRef Name="IDShipment" />
+          </Key>
+          <Property Name="IDShipment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateShipment" Type="date" Nullable="false" />
+          <Property Name="Amount" Type="int" Nullable="false" />
+          <Property Name="IDParty" Type="int" Nullable="false" />
+          <Property Name="IDStorage" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Soil">
+          <Key>
+            <PropertyRef Name="IDSoil" />
+          </Key>
+          <Property Name="IDSoil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SoilDescription" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Storage">
+          <Key>
+            <PropertyRef Name="IDStorage" />
+          </Key>
+          <Property Name="IDStorage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fullness" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="StorageWine">
+          <Key>
+            <PropertyRef Name="IDStorageWine" />
+          </Key>
+          <Property Name="IDStorageWine" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDFermentation" Type="int" Nullable="false" />
+          <Property Name="IDStorage" Type="int" Nullable="false" />
+          <Property Name="IDGrowingConditions" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ExpirationDate" Type="date" Nullable="false" />
+          <Property Name="IDParty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Water">
+          <Key>
+            <PropertyRef Name="IDWater" />
+          </Key>
+          <Property Name="IDWater" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WaterDescription" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Yield">
+          <Key>
+            <PropertyRef Name="IDYield" />
+          </Key>
+          <Property Name="IDYield" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDGrapeVarieties" Type="int" Nullable="false" />
+          <Property Name="DateYield" Type="date" Nullable="false" />
+          <Property Name="Harvest" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Заказы__IDКлиент__52593CB8">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="IDClient" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IDClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Заказы__IDСотруд__5535A963">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="IDEmployee" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IDEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Заказы__IDТовара__534D60F1">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="IDProduct" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IDProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Товар__IDСклада__4F7CD00D">
+          <End Role="Storage" Type="Self.Storage" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="IDStorage" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="IDStorage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Урожай__IDСорта__3D5E1FD2">
+          <End Role="GrapeVarieties" Type="Self.GrapeVarieties" Multiplicity="1" />
+          <End Role="Yield" Type="Self.Yield" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrapeVarieties">
+              <PropertyRef Name="IDGrapeVarieties" />
+            </Principal>
+            <Dependent Role="Yield">
+              <PropertyRef Name="IDGrapeVarieties" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__УсловияВы__IDСор__3A81B327">
+          <End Role="GrapeVarieties" Type="Self.GrapeVarieties" Multiplicity="1" />
+          <End Role="GrowingConditions" Type="Self.GrowingConditions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrapeVarieties">
+              <PropertyRef Name="IDGrapeVarieties" />
+            </Principal>
+            <Dependent Role="GrowingConditions">
+              <PropertyRef Name="IDGrapeVarieties" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ферментац__IDУро__412EB0B6">
+          <End Role="Yield" Type="Self.Yield" Multiplicity="1" />
+          <End Role="Fermentation" Type="Self.Fermentation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yield">
+              <PropertyRef Name="IDYield" />
+            </Principal>
+            <Dependent Role="Fermentation">
+              <PropertyRef Name="IDYield" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shipments_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="1" />
+          <End Role="Shipments" Type="Self.Shipments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="IDParty" />
+            </Principal>
+            <Dependent Role="Shipments">
+              <PropertyRef Name="IDParty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StorageWine_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="1" />
+          <End Role="StorageWine" Type="Self.StorageWine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="IDParty" />
+            </Principal>
+            <Dependent Role="StorageWine">
+              <PropertyRef Name="IDParty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заказы_Платежи">
+          <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment">
+              <PropertyRef Name="IDPayment" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IDPayment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ОплатаЗаказа_Заказы">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="PaymentsOrder" Type="Self.PaymentsOrder" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="IDOrders" />
+            </Principal>
+            <Dependent Role="PaymentsOrder">
+              <PropertyRef Name="IDOrders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Отгрузки_Склад">
+          <End Role="Storage" Type="Self.Storage" Multiplicity="1" />
+          <End Role="Shipments" Type="Self.Shipments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="IDStorage" />
+            </Principal>
+            <Dependent Role="Shipments">
+              <PropertyRef Name="IDStorage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Сотрудники_Должность">
+          <End Role="JobTitles" Type="Self.JobTitles" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTitles">
+              <PropertyRef Name="IDJobTitle" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="IDJobTitle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Товар_Партии">
+          <End Role="Party" Type="Self.Party" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="IDParty" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="IDParty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_УсловияВыращивания_Климат">
+          <End Role="Climate" Type="Self.Climate" Multiplicity="1" />
+          <End Role="GrowingConditions" Type="Self.GrowingConditions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Climate">
+              <PropertyRef Name="IDClimate" />
+            </Principal>
+            <Dependent Role="GrowingConditions">
+              <PropertyRef Name="IDClimate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_УсловияВыращивания_Полив">
+          <End Role="Water" Type="Self.Water" Multiplicity="1" />
+          <End Role="GrowingConditions" Type="Self.GrowingConditions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Water">
+              <PropertyRef Name="IDWater" />
+            </Principal>
+            <Dependent Role="GrowingConditions">
+              <PropertyRef Name="IDWater" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_УсловияВыращивания_Почва">
+          <End Role="Soil" Type="Self.Soil" Multiplicity="1" />
+          <End Role="GrowingConditions" Type="Self.GrowingConditions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Soil">
+              <PropertyRef Name="IDSoil" />
+            </Principal>
+            <Dependent Role="GrowingConditions">
+              <PropertyRef Name="IDSoil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ферментация_Партии">
+          <End Role="Party" Type="Self.Party" Multiplicity="1" />
+          <End Role="Fermentation" Type="Self.Fermentation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="IDParty" />
+            </Principal>
+            <Dependent Role="Fermentation">
+              <PropertyRef Name="IDParty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ферментация_УсловияВыращивания">
+          <End Role="GrowingConditions" Type="Self.GrowingConditions" Multiplicity="1" />
+          <End Role="Fermentation" Type="Self.Fermentation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrowingConditions">
+              <PropertyRef Name="IDGrowingConditions" />
+            </Principal>
+            <Dependent Role="Fermentation">
+              <PropertyRef Name="IDGrowingConditions" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DistilleryRassvetModelContainer">
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Climate" EntityType="Self.Climate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fermentation" EntityType="Self.Fermentation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GrapeVarieties" EntityType="Self.GrapeVarieties" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GrowingConditions" EntityType="Self.GrowingConditions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobTitles" EntityType="Self.JobTitles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Party" EntityType="Self.Party" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentsOrder" EntityType="Self.PaymentsOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shipments" EntityType="Self.Shipments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Soil" EntityType="Self.Soil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Storage" EntityType="Self.Storage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StorageWine" EntityType="Self.StorageWine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Water" EntityType="Self.Water" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yield" EntityType="Self.Yield" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Заказы__IDКлиент__52593CB8" Association="Self.FK__Заказы__IDКлиент__52593CB8">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Заказы__IDСотруд__5535A963" Association="Self.FK__Заказы__IDСотруд__5535A963">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Заказы__IDТовара__534D60F1" Association="Self.FK__Заказы__IDТовара__534D60F1">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Товар__IDСклада__4F7CD00D" Association="Self.FK__Товар__IDСклада__4F7CD00D">
+            <End Role="Storage" EntitySet="Storage" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Урожай__IDСорта__3D5E1FD2" Association="Self.FK__Урожай__IDСорта__3D5E1FD2">
+            <End Role="GrapeVarieties" EntitySet="GrapeVarieties" />
+            <End Role="Yield" EntitySet="Yield" />
+          </AssociationSet>
+          <AssociationSet Name="FK__УсловияВы__IDСор__3A81B327" Association="Self.FK__УсловияВы__IDСор__3A81B327">
+            <End Role="GrapeVarieties" EntitySet="GrapeVarieties" />
+            <End Role="GrowingConditions" EntitySet="GrowingConditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ферментац__IDУро__412EB0B6" Association="Self.FK__Ферментац__IDУро__412EB0B6">
+            <End Role="Yield" EntitySet="Yield" />
+            <End Role="Fermentation" EntitySet="Fermentation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shipments_Party" Association="Self.FK_Shipments_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Shipments" EntitySet="Shipments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StorageWine_Party" Association="Self.FK_StorageWine_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="StorageWine" EntitySet="StorageWine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заказы_Платежи" Association="Self.FK_Заказы_Платежи">
+            <End Role="Payment" EntitySet="Payment" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ОплатаЗаказа_Заказы" Association="Self.FK_ОплатаЗаказа_Заказы">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="PaymentsOrder" EntitySet="PaymentsOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Отгрузки_Склад" Association="Self.FK_Отгрузки_Склад">
+            <End Role="Storage" EntitySet="Storage" />
+            <End Role="Shipments" EntitySet="Shipments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Сотрудники_Должность" Association="Self.FK_Сотрудники_Должность">
+            <End Role="JobTitles" EntitySet="JobTitles" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Товар_Партии" Association="Self.FK_Товар_Партии">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_УсловияВыращивания_Климат" Association="Self.FK_УсловияВыращивания_Климат">
+            <End Role="Climate" EntitySet="Climate" />
+            <End Role="GrowingConditions" EntitySet="GrowingConditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_УсловияВыращивания_Полив" Association="Self.FK_УсловияВыращивания_Полив">
+            <End Role="Water" EntitySet="Water" />
+            <End Role="GrowingConditions" EntitySet="GrowingConditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_УсловияВыращивания_Почва" Association="Self.FK_УсловияВыращивания_Почва">
+            <End Role="Soil" EntitySet="Soil" />
+            <End Role="GrowingConditions" EntitySet="GrowingConditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ферментация_Партии" Association="Self.FK_Ферментация_Партии">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Fermentation" EntitySet="Fermentation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ферментация_УсловияВыращивания" Association="Self.FK_Ферментация_УсловияВыращивания">
+            <End Role="GrowingConditions" EntitySet="GrowingConditions" />
+            <End Role="Fermentation" EntitySet="Fermentation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DistilleryRassvetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="IDClient" />
+          </Key>
+          <Property Name="IDClient" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Заказы__IDКлиент__52593CB8" FromRole="Clients" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Climate">
+          <Key>
+            <PropertyRef Name="IDClimate" />
+          </Key>
+          <Property Name="IDClimate" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClimateDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="GrowingConditions" Relationship="Self.FK_УсловияВыращивания_Климат" FromRole="Climate" ToRole="GrowingConditions" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="IDEmployee" />
+          </Key>
+          <Property Name="IDEmployee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDJobTitle" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="Int32" Nullable="false" />
+          <Property Name="DataPassport" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateStartedWork" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Заказы__IDСотруд__5535A963" FromRole="Employees" ToRole="Orders" />
+          <NavigationProperty Name="JobTitles" Relationship="Self.FK_Сотрудники_Должность" FromRole="Employees" ToRole="JobTitles" />
+        </EntityType>
+        <EntityType Name="Fermentation">
+          <Key>
+            <PropertyRef Name="IDFermentation" />
+          </Key>
+          <Property Name="IDFermentation" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDYield" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Temperature" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="LevelSugar" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="IDParty" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDGrowingConditions" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Yield" Relationship="Self.FK__Ферментац__IDУро__412EB0B6" FromRole="Fermentation" ToRole="Yield" />
+          <NavigationProperty Name="Party" Relationship="Self.FK_Ферментация_Партии" FromRole="Fermentation" ToRole="Party" />
+          <NavigationProperty Name="GrowingConditions" Relationship="Self.FK_Ферментация_УсловияВыращивания" FromRole="Fermentation" ToRole="GrowingConditions" />
+        </EntityType>
+        <EntityType Name="GrapeVarieties">
+          <Key>
+            <PropertyRef Name="IDGrapeVarieties" />
+          </Key>
+          <Property Name="IDGrapeVarieties" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameGrapeVarieties" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Yield" Relationship="Self.FK__Урожай__IDСорта__3D5E1FD2" FromRole="GrapeVarieties" ToRole="Yield" />
+          <NavigationProperty Name="GrowingConditions" Relationship="Self.FK__УсловияВы__IDСор__3A81B327" FromRole="GrapeVarieties" ToRole="GrowingConditions" />
+        </EntityType>
+        <EntityType Name="GrowingConditions">
+          <Key>
+            <PropertyRef Name="IDGrowingConditions" />
+          </Key>
+          <Property Name="IDGrowingConditions" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDGrapeVarieties" Type="Int32" Nullable="false" />
+          <Property Name="IDSoil" Type="Int32" Nullable="false" />
+          <Property Name="IDWater" Type="Int32" Nullable="false" />
+          <Property Name="IDClimate" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Climate" Relationship="Self.FK_УсловияВыращивания_Климат" FromRole="GrowingConditions" ToRole="Climate" />
+          <NavigationProperty Name="Fermentation" Relationship="Self.FK_Ферментация_УсловияВыращивания" FromRole="GrowingConditions" ToRole="Fermentation" />
+          <NavigationProperty Name="GrapeVarieties" Relationship="Self.FK__УсловияВы__IDСор__3A81B327" FromRole="GrowingConditions" ToRole="GrapeVarieties" />
+          <NavigationProperty Name="Water" Relationship="Self.FK_УсловияВыращивания_Полив" FromRole="GrowingConditions" ToRole="Water" />
+          <NavigationProperty Name="Soil" Relationship="Self.FK_УсловияВыращивания_Почва" FromRole="GrowingConditions" ToRole="Soil" />
+        </EntityType>
+        <EntityType Name="JobTitles">
+          <Key>
+            <PropertyRef Name="IDJobTitle" />
+          </Key>
+          <Property Name="IDJobTitle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Сотрудники_Должность" FromRole="JobTitles" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="IDOrders" />
+          </Key>
+          <Property Name="IDOrders" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDClient" Type="Int32" Nullable="false" />
+          <Property Name="IDProduct" Type="Int32" Nullable="false" />
+          <Property Name="IDEmployee" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="DateOrder" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Sum" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="IDPayment" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Clients" Relationship="Self.FK__Заказы__IDКлиент__52593CB8" FromRole="Orders" ToRole="Clients" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Заказы__IDСотруд__5535A963" FromRole="Orders" ToRole="Employees" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Заказы__IDТовара__534D60F1" FromRole="Orders" ToRole="Products" />
+          <NavigationProperty Name="Payment" Relationship="Self.FK_Заказы_Платежи" FromRole="Orders" ToRole="Payment" />
+          <NavigationProperty Name="PaymentsOrder" Relationship="Self.FK_ОплатаЗаказа_Заказы" FromRole="Orders" ToRole="PaymentsOrder" />
+        </EntityType>
+        <EntityType Name="Party">
+          <Key>
+            <PropertyRef Name="IDParty" />
+          </Key>
+          <Property Name="IDParty" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartyDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Fermentation" Relationship="Self.FK_Ферментация_Партии" FromRole="Party" ToRole="Fermentation" />
+          <NavigationProperty Name="Shipments" Relationship="Self.FK_Shipments_Party" FromRole="Party" ToRole="Shipments" />
+          <NavigationProperty Name="StorageWine" Relationship="Self.FK_StorageWine_Party" FromRole="Party" ToRole="StorageWine" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Товар_Партии" FromRole="Party" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="IDPayment" />
+          </Key>
+          <Property Name="IDPayment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentMethod" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Заказы_Платежи" FromRole="Payment" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="PaymentsOrder">
+          <Key>
+            <PropertyRef Name="IDOrders" />
+          </Key>
+          <Property Name="IDOrders" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sum" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="DatePayments" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_ОплатаЗаказа_Заказы" FromRole="PaymentsOrder" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="IDProduct" />
+          </Key>
+          <Property Name="IDProduct" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDParty" Type="Int32" Nullable="false" />
+          <Property Name="IDStorage" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="primecost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Description" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Заказы__IDТовара__534D60F1" FromRole="Products" ToRole="Orders" />
+          <NavigationProperty Name="Party" Relationship="Self.FK_Товар_Партии" FromRole="Products" ToRole="Party" />
+          <NavigationProperty Name="Storage" Relationship="Self.FK__Товар__IDСклада__4F7CD00D" FromRole="Products" ToRole="Storage" />
+        </EntityType>
+        <EntityType Name="Shipments">
+          <Key>
+            <PropertyRef Name="IDShipment" />
+          </Key>
+          <Property Name="IDShipment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateShipment" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Amount" Type="Int32" Nullable="false" />
+          <Property Name="IDParty" Type="Int32" Nullable="false" />
+          <Property Name="IDStorage" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Party" Relationship="Self.FK_Shipments_Party" FromRole="Shipments" ToRole="Party" />
+          <NavigationProperty Name="Storage" Relationship="Self.FK_Отгрузки_Склад" FromRole="Shipments" ToRole="Storage" />
+        </EntityType>
+        <EntityType Name="Soil">
+          <Key>
+            <PropertyRef Name="IDSoil" />
+          </Key>
+          <Property Name="IDSoil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SoilDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="GrowingConditions" Relationship="Self.FK_УсловияВыращивания_Почва" FromRole="Soil" ToRole="GrowingConditions" />
+        </EntityType>
+        <EntityType Name="Storage">
+          <Key>
+            <PropertyRef Name="IDStorage" />
+          </Key>
+          <Property Name="IDStorage" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fullness" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Товар__IDСклада__4F7CD00D" FromRole="Storage" ToRole="Products" />
+          <NavigationProperty Name="Shipments" Relationship="Self.FK_Отгрузки_Склад" FromRole="Storage" ToRole="Shipments" />
+        </EntityType>
+        <EntityType Name="StorageWine">
+          <Key>
+            <PropertyRef Name="IDStorageWine" />
+          </Key>
+          <Property Name="IDStorageWine" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDFermentation" Type="Int32" Nullable="false" />
+          <Property Name="IDStorage" Type="Int32" Nullable="false" />
+          <Property Name="IDGrowingConditions" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDParty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Party" Relationship="Self.FK_StorageWine_Party" FromRole="StorageWine" ToRole="Party" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Water">
+          <Key>
+            <PropertyRef Name="IDWater" />
+          </Key>
+          <Property Name="IDWater" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WaterDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="GrowingConditions" Relationship="Self.FK_УсловияВыращивания_Полив" FromRole="Water" ToRole="GrowingConditions" />
+        </EntityType>
+        <EntityType Name="Yield">
+          <Key>
+            <PropertyRef Name="IDYield" />
+          </Key>
+          <Property Name="IDYield" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDGrapeVarieties" Type="Int32" Nullable="false" />
+          <Property Name="DateYield" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Harvest" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Fermentation" Relationship="Self.FK__Ферментац__IDУро__412EB0B6" FromRole="Yield" ToRole="Fermentation" />
+          <NavigationProperty Name="GrapeVarieties" Relationship="Self.FK__Урожай__IDСорта__3D5E1FD2" FromRole="Yield" ToRole="GrapeVarieties" />
+        </EntityType>
+        <Association Name="FK__Заказы__IDКлиент__52593CB8">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="IDClient" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IDClient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_УсловияВыращивания_Климат">
+          <End Role="Climate" Type="Self.Climate" Multiplicity="1" />
+          <End Role="GrowingConditions" Type="Self.GrowingConditions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Climate">
+              <PropertyRef Name="IDClimate" />
+            </Principal>
+            <Dependent Role="GrowingConditions">
+              <PropertyRef Name="IDClimate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Заказы__IDСотруд__5535A963">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="IDEmployee" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IDEmployee" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Сотрудники_Должность">
+          <End Role="JobTitles" Type="Self.JobTitles" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="JobTitles">
+              <PropertyRef Name="IDJobTitle" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="IDJobTitle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ферментац__IDУро__412EB0B6">
+          <End Role="Yield" Type="Self.Yield" Multiplicity="1" />
+          <End Role="Fermentation" Type="Self.Fermentation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yield">
+              <PropertyRef Name="IDYield" />
+            </Principal>
+            <Dependent Role="Fermentation">
+              <PropertyRef Name="IDYield" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ферментация_Партии">
+          <End Role="Party" Type="Self.Party" Multiplicity="1" />
+          <End Role="Fermentation" Type="Self.Fermentation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="IDParty" />
+            </Principal>
+            <Dependent Role="Fermentation">
+              <PropertyRef Name="IDParty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ферментация_УсловияВыращивания">
+          <End Role="GrowingConditions" Type="Self.GrowingConditions" Multiplicity="1" />
+          <End Role="Fermentation" Type="Self.Fermentation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrowingConditions">
+              <PropertyRef Name="IDGrowingConditions" />
+            </Principal>
+            <Dependent Role="Fermentation">
+              <PropertyRef Name="IDGrowingConditions" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Урожай__IDСорта__3D5E1FD2">
+          <End Role="GrapeVarieties" Type="Self.GrapeVarieties" Multiplicity="1" />
+          <End Role="Yield" Type="Self.Yield" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrapeVarieties">
+              <PropertyRef Name="IDGrapeVarieties" />
+            </Principal>
+            <Dependent Role="Yield">
+              <PropertyRef Name="IDGrapeVarieties" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__УсловияВы__IDСор__3A81B327">
+          <End Role="GrapeVarieties" Type="Self.GrapeVarieties" Multiplicity="1" />
+          <End Role="GrowingConditions" Type="Self.GrowingConditions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GrapeVarieties">
+              <PropertyRef Name="IDGrapeVarieties" />
+            </Principal>
+            <Dependent Role="GrowingConditions">
+              <PropertyRef Name="IDGrapeVarieties" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_УсловияВыращивания_Полив">
+          <End Role="Water" Type="Self.Water" Multiplicity="1" />
+          <End Role="GrowingConditions" Type="Self.GrowingConditions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Water">
+              <PropertyRef Name="IDWater" />
+            </Principal>
+            <Dependent Role="GrowingConditions">
+              <PropertyRef Name="IDWater" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_УсловияВыращивания_Почва">
+          <End Role="Soil" Type="Self.Soil" Multiplicity="1" />
+          <End Role="GrowingConditions" Type="Self.GrowingConditions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Soil">
+              <PropertyRef Name="IDSoil" />
+            </Principal>
+            <Dependent Role="GrowingConditions">
+              <PropertyRef Name="IDSoil" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Заказы__IDТовара__534D60F1">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="IDProduct" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IDProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Заказы_Платежи">
+          <End Role="Payment" Type="Self.Payment" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Payment">
+              <PropertyRef Name="IDPayment" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="IDPayment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ОплатаЗаказа_Заказы">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="PaymentsOrder" Type="Self.PaymentsOrder" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="IDOrders" />
+            </Principal>
+            <Dependent Role="PaymentsOrder">
+              <PropertyRef Name="IDOrders" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Shipments_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="1" />
+          <End Role="Shipments" Type="Self.Shipments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="IDParty" />
+            </Principal>
+            <Dependent Role="Shipments">
+              <PropertyRef Name="IDParty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StorageWine_Party">
+          <End Role="Party" Type="Self.Party" Multiplicity="1" />
+          <End Role="StorageWine" Type="Self.StorageWine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="IDParty" />
+            </Principal>
+            <Dependent Role="StorageWine">
+              <PropertyRef Name="IDParty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Товар_Партии">
+          <End Role="Party" Type="Self.Party" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Party">
+              <PropertyRef Name="IDParty" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="IDParty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Товар__IDСклада__4F7CD00D">
+          <End Role="Storage" Type="Self.Storage" Multiplicity="1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="IDStorage" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="IDStorage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Отгрузки_Склад">
+          <End Role="Storage" Type="Self.Storage" Multiplicity="1" />
+          <End Role="Shipments" Type="Self.Shipments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Storage">
+              <PropertyRef Name="IDStorage" />
+            </Principal>
+            <Dependent Role="Shipments">
+              <PropertyRef Name="IDStorage" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DistilleryRassvetBase" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clients" EntityType="Self.Clients" />
+          <EntitySet Name="Climate" EntityType="Self.Climate" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+          <EntitySet Name="Fermentation" EntityType="Self.Fermentation" />
+          <EntitySet Name="GrapeVarieties" EntityType="Self.GrapeVarieties" />
+          <EntitySet Name="GrowingConditions" EntityType="Self.GrowingConditions" />
+          <EntitySet Name="JobTitles" EntityType="Self.JobTitles" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="Party" EntityType="Self.Party" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" />
+          <EntitySet Name="PaymentsOrder" EntityType="Self.PaymentsOrder" />
+          <EntitySet Name="Products" EntityType="Self.Products" />
+          <EntitySet Name="Shipments" EntityType="Self.Shipments" />
+          <EntitySet Name="Soil" EntityType="Self.Soil" />
+          <EntitySet Name="Storage" EntityType="Self.Storage" />
+          <EntitySet Name="StorageWine" EntityType="Self.StorageWine" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Water" EntityType="Self.Water" />
+          <EntitySet Name="Yield" EntityType="Self.Yield" />
+          <AssociationSet Name="FK__Заказы__IDКлиент__52593CB8" Association="Self.FK__Заказы__IDКлиент__52593CB8">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_УсловияВыращивания_Климат" Association="Self.FK_УсловияВыращивания_Климат">
+            <End Role="Climate" EntitySet="Climate" />
+            <End Role="GrowingConditions" EntitySet="GrowingConditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Заказы__IDСотруд__5535A963" Association="Self.FK__Заказы__IDСотруд__5535A963">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Сотрудники_Должность" Association="Self.FK_Сотрудники_Должность">
+            <End Role="JobTitles" EntitySet="JobTitles" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ферментац__IDУро__412EB0B6" Association="Self.FK__Ферментац__IDУро__412EB0B6">
+            <End Role="Yield" EntitySet="Yield" />
+            <End Role="Fermentation" EntitySet="Fermentation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ферментация_Партии" Association="Self.FK_Ферментация_Партии">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Fermentation" EntitySet="Fermentation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ферментация_УсловияВыращивания" Association="Self.FK_Ферментация_УсловияВыращивания">
+            <End Role="GrowingConditions" EntitySet="GrowingConditions" />
+            <End Role="Fermentation" EntitySet="Fermentation" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Урожай__IDСорта__3D5E1FD2" Association="Self.FK__Урожай__IDСорта__3D5E1FD2">
+            <End Role="GrapeVarieties" EntitySet="GrapeVarieties" />
+            <End Role="Yield" EntitySet="Yield" />
+          </AssociationSet>
+          <AssociationSet Name="FK__УсловияВы__IDСор__3A81B327" Association="Self.FK__УсловияВы__IDСор__3A81B327">
+            <End Role="GrapeVarieties" EntitySet="GrapeVarieties" />
+            <End Role="GrowingConditions" EntitySet="GrowingConditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_УсловияВыращивания_Полив" Association="Self.FK_УсловияВыращивания_Полив">
+            <End Role="Water" EntitySet="Water" />
+            <End Role="GrowingConditions" EntitySet="GrowingConditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_УсловияВыращивания_Почва" Association="Self.FK_УсловияВыращивания_Почва">
+            <End Role="Soil" EntitySet="Soil" />
+            <End Role="GrowingConditions" EntitySet="GrowingConditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Заказы__IDТовара__534D60F1" Association="Self.FK__Заказы__IDТовара__534D60F1">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Заказы_Платежи" Association="Self.FK_Заказы_Платежи">
+            <End Role="Payment" EntitySet="Payment" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ОплатаЗаказа_Заказы" Association="Self.FK_ОплатаЗаказа_Заказы">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="PaymentsOrder" EntitySet="PaymentsOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Shipments_Party" Association="Self.FK_Shipments_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Shipments" EntitySet="Shipments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StorageWine_Party" Association="Self.FK_StorageWine_Party">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="StorageWine" EntitySet="StorageWine" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Товар_Партии" Association="Self.FK_Товар_Партии">
+            <End Role="Party" EntitySet="Party" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Товар__IDСклада__4F7CD00D" Association="Self.FK__Товар__IDСклада__4F7CD00D">
+            <End Role="Storage" EntitySet="Storage" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Отгрузки_Склад" Association="Self.FK_Отгрузки_Склад">
+            <End Role="Storage" EntitySet="Storage" />
+            <End Role="Shipments" EntitySet="Shipments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DistilleryRassvetModelContainer" CdmEntityContainer="DistilleryRassvetBase">
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="DistilleryRassvetModel.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="IDClient" ColumnName="IDClient" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Climate">
+            <EntityTypeMapping TypeName="DistilleryRassvetModel.Climate">
+              <MappingFragment StoreEntitySet="Climate">
+                <ScalarProperty Name="IDClimate" ColumnName="IDClimate" />
+                <ScalarProperty Name="ClimateDescription" ColumnName="ClimateDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="DistilleryRassvetModel.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="IDEmployee" ColumnName="IDEmployee" />
+                <ScalarProperty Name="IDJobTitle" ColumnName="IDJobTitle" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="DataPassport" ColumnName="DataPassport" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DateStartedWork" ColumnName="DateStartedWork" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fermentation">
+            <EntityTypeMapping TypeName="DistilleryRassvetModel.Fermentation">
+              <MappingFragment StoreEntitySet="Fermentation">
+                <ScalarProperty Name="IDFermentation" ColumnName="IDFermentation" />
+                <ScalarProperty Name="IDYield" ColumnName="IDYield" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Temperature" ColumnName="Temperature" />
+                <ScalarProperty Name="LevelSugar" ColumnName="LevelSugar" />
+                <ScalarProperty Name="IDParty" ColumnName="IDParty" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="IDGrowingConditions" ColumnName="IDGrowingConditions" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GrapeVarieties">
+            <EntityTypeMapping TypeName="DistilleryRassvetModel.GrapeVarieties">
+              <MappingFragment StoreEntitySet="GrapeVarieties">
+                <ScalarProperty Name="IDGrapeVarieties" ColumnName="IDGrapeVarieties" />
+                <ScalarProperty Name="NameGrapeVarieties" ColumnName="NameGrapeVarieties" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GrowingConditions">
+            <EntityTypeMapping TypeName="DistilleryRassvetModel.GrowingConditions">
+              <MappingFragment StoreEntitySet="GrowingConditions">
+                <ScalarProperty Name="IDGrowingConditions" ColumnName="IDGrowingConditions" />
+                <ScalarProperty Name="IDGrapeVarieties" ColumnName="IDGrapeVarieties" />
+                <ScalarProperty Name="IDSoil" ColumnName="IDSoil" />
+                <ScalarProperty Name="IDWater" ColumnName="IDWater" />
+                <ScalarProperty Name="IDClimate" ColumnName="IDClimate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobTitles">
+            <EntityTypeMapping TypeName="DistilleryRassvetModel.JobTitles">
+              <MappingFragment StoreEntitySet="JobTitles">
+                <ScalarProperty Name="IDJobTitle" ColumnName="IDJobTitle" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="DistilleryRassvetModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="IDOrders" ColumnName="IDOrders" />
+                <ScalarProperty Name="IDClient" ColumnName="IDClient" />
+                <ScalarProperty Name="IDProduct" ColumnName="IDProduct" />
+                <ScalarProperty Name="IDEmployee" ColumnName="IDEmployee" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="DateOrder" ColumnName="DateOrder" />
+                <ScalarProperty Name="Sum" ColumnName="Sum" />
+                <ScalarProperty Name="IDPayment" ColumnName="IDPayment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Party">
+            <EntityTypeMapping TypeName="DistilleryRassvetModel.Party">
+              <MappingFragment StoreEntitySet="Party">
+                <ScalarProperty Name="IDParty" ColumnName="IDParty" />
+                <ScalarProperty Name="PartyDescription" ColumnName="PartyDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payment">
+            <EntityTypeMapping TypeName="DistilleryRassvetModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="IDPayment" ColumnName="IDPayment" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentsOrder">
+            <EntityTypeMapping TypeName="DistilleryRassvetModel.PaymentsOrder">
+              <MappingFragment StoreEntitySet="PaymentsOrder">
+                <ScalarProperty Name="IDOrders" ColumnName="IDOrders" />
+                <ScalarProperty Name="Sum" ColumnName="Sum" />
+                <ScalarProperty Name="DatePayments" ColumnName="DatePayments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="DistilleryRassvetModel.Products">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="IDProduct" ColumnName="IDProduct" />
+                <ScalarProperty Name="IDParty" ColumnName="IDParty" />
+                <ScalarProperty Name="IDStorage" ColumnName="IDStorage" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="primecost" ColumnName="primecost" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shipments">
+            <EntityTypeMapping TypeName="DistilleryRassvetModel.Shipments">
+              <MappingFragment StoreEntitySet="Shipments">
+                <ScalarProperty Name="IDShipment" ColumnName="IDShipment" />
+                <ScalarProperty Name="DateShipment" ColumnName="DateShipment" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="IDParty" ColumnName="IDParty" />
+                <ScalarProperty Name="IDStorage" ColumnName="IDStorage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Soil">
+            <EntityTypeMapping TypeName="DistilleryRassvetModel.Soil">
+              <MappingFragment StoreEntitySet="Soil">
+                <ScalarProperty Name="IDSoil" ColumnName="IDSoil" />
+                <ScalarProperty Name="SoilDescription" ColumnName="SoilDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Storage">
+            <EntityTypeMapping TypeName="DistilleryRassvetModel.Storage">
+              <MappingFragment StoreEntitySet="Storage">
+                <ScalarProperty Name="IDStorage" ColumnName="IDStorage" />
+                <ScalarProperty Name="Fullness" ColumnName="Fullness" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StorageWine">
+            <EntityTypeMapping TypeName="DistilleryRassvetModel.StorageWine">
+              <MappingFragment StoreEntitySet="StorageWine">
+                <ScalarProperty Name="IDStorageWine" ColumnName="IDStorageWine" />
+                <ScalarProperty Name="IDFermentation" ColumnName="IDFermentation" />
+                <ScalarProperty Name="IDStorage" ColumnName="IDStorage" />
+                <ScalarProperty Name="IDGrowingConditions" ColumnName="IDGrowingConditions" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="IDParty" ColumnName="IDParty" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DistilleryRassvetModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Water">
+            <EntityTypeMapping TypeName="DistilleryRassvetModel.Water">
+              <MappingFragment StoreEntitySet="Water">
+                <ScalarProperty Name="IDWater" ColumnName="IDWater" />
+                <ScalarProperty Name="WaterDescription" ColumnName="WaterDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yield">
+            <EntityTypeMapping TypeName="DistilleryRassvetModel.Yield">
+              <MappingFragment StoreEntitySet="Yield">
+                <ScalarProperty Name="IDYield" ColumnName="IDYield" />
+                <ScalarProperty Name="IDGrapeVarieties" ColumnName="IDGrapeVarieties" />
+                <ScalarProperty Name="DateYield" ColumnName="DateYield" />
+                <ScalarProperty Name="Harvest" ColumnName="Harvest" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,28 @@
+﻿<Page x:Class="RPM.StoragePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RPM"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="StoragePage">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="PageStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <DataGrid Name="DataGridStorage" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="IDStorage" Binding="{Binding IDStorage}" Width="Auto"/>
+                <DataGridTextColumn Header="Fullness" Binding="{Binding Fullness}" Width="Auto"/>
+                <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+
+    </Grid>
+</Page>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a3aaf5d42d044563a02e9bee8a77846c" Name="Diagram1">
+        <EntityTypeShape EntityType="DistilleryRassvetModel.Clients" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DistilleryRassvetModel.Climate" Width="1.5" PointX="1.5" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DistilleryRassvetModel.Employees" Width="1.5" PointX="6" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DistilleryRassvetModel.Fermentation" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DistilleryRassvetModel.GrapeVarieties" Width="1.5" PointX="1.5" PointY="29" IsExpanded="true" />
+        <EntityTypeShape EntityType="DistilleryRassvetModel.GrowingConditions" Width="1.5" PointX="0.75" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DistilleryRassvetModel.JobTitles" Width="1.5" PointX="3.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DistilleryRassvetModel.Orders" Width="1.5" PointX="8.25" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DistilleryRassvetModel.Party" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DistilleryRassvetModel.Payment" Width="1.5" PointX="6" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DistilleryRassvetModel.PaymentsOrder" Width="1.5" PointX="10.5" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DistilleryRassvetModel.Products" Width="1.5" PointX="6" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="DistilleryRassvetModel.Shipments" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DistilleryRassvetModel.Soil" Width="1.5" PointX="1.5" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DistilleryRassvetModel.Storage" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DistilleryRassvetModel.StorageWine" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DistilleryRassvetModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DistilleryRassvetModel.Water" Width="1.5" PointX="1.5" PointY="26.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DistilleryRassvetModel.Yield" Width="1.5" PointX="0.75" PointY="17.875" IsExpanded="true" />
+        <AssociationConnector Association="DistilleryRassvetModel.FK__Заказы__IDКлиент__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="DistilleryRassvetModel.FK_УсловияВыращивания_Климат" ManuallyRouted="false" />
+        <AssociationConnector Association="DistilleryRassvetModel.FK__Заказы__IDСотруд__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="DistilleryRassvetModel.FK_Сотрудники_Должность" ManuallyRouted="false" />
+        <AssociationConnector Association="DistilleryRassvetModel.FK__Ферментац__IDУро__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="DistilleryRassvetModel.FK_Ферментация_Партии" ManuallyRouted="false" />
+        <AssociationConnector Association="DistilleryRassvetModel.FK_Ферментация_УсловияВыращивания" ManuallyRouted="false" />
+        <AssociationConnector Association="DistilleryRassvetModel.FK__Урожай__IDСорта__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="DistilleryRassvetModel.FK__УсловияВы__IDСор__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="DistilleryRassvetModel.FK_УсловияВыращивания_Полив" ManuallyRouted="false" />
+        <AssociationConnector Association="DistilleryRassvetModel.FK_УсловияВыращивания_Почва" ManuallyRouted="false" />
+        <AssociationConnector Association="DistilleryRassvetModel.FK__Заказы__IDТовара__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="DistilleryRassvetModel.FK_Заказы_Платежи" ManuallyRouted="false" />
+        <AssociationConnector Association="DistilleryRassvetModel.FK_ОплатаЗаказа_Заказы" ManuallyRouted="false" />
+        <AssociationConnector Association="DistilleryRassvetModel.FK_Shipments_Party" ManuallyRouted="false" />
+        <AssociationConnector Association="DistilleryRassvetModel.FK_StorageWine_Party" ManuallyRouted="false" />
+        <AssociationConnector Association="DistilleryRassvetModel.FK_Товар_Партии" ManuallyRouted="false" />
+        <AssociationConnector Association="DistilleryRassvetModel.FK__Товар__IDСклада__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="DistilleryRassvetModel.FK_Отгрузки_Склад" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

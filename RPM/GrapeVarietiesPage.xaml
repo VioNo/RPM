@@ -1,0 +1,28 @@
+﻿<Page x:Class="RPM.GrapeVarietiesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RPM"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="GrapeVarietiesPage">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="PageStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <ListView Name="ListViewGrapeVarieties" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="IDGrapeVarieties" DisplayMemberBinding="{Binding IDGrapeVarieties}" Width="auto"/>
+                    <GridViewColumn Header="NameGrapeVarieties" DisplayMemberBinding="{Binding NameGrapeVarieties}" Width="auto"/>
+                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="auto"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>
