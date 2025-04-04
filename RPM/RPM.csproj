@@ -70,6 +70,9 @@
     <Compile Include="Clients.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ClientsDialog.xaml.cs">
+      <DependentUpon>ClientsDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ClientsPage.xaml.cs">
       <DependentUpon>ClientsPage.xaml</DependentUpon>
     </Compile>
@@ -82,6 +85,9 @@
     <Compile Include="Employees.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="EmployeesDialog.xaml.cs">
+      <DependentUpon>EmployeesDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EmployeesPage.xaml.cs">
       <DependentUpon>EmployeesPage.xaml</DependentUpon>
     </Compile>
@@ -90,6 +96,9 @@
     </Compile>
     <Compile Include="GrapeVarieties.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GrapeVarietiesDialog.xaml.cs">
+      <DependentUpon>GrapeVarietiesDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="GrapeVarietiesPage.xaml.cs">
       <DependentUpon>GrapeVarietiesPage.xaml</DependentUpon>
@@ -148,6 +157,9 @@
     <Compile Include="Storage.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="StorageDialog.xaml.cs">
+      <DependentUpon>StorageDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="StoragePage.xaml.cs">
       <DependentUpon>StoragePage.xaml</DependentUpon>
     </Compile>
@@ -166,6 +178,10 @@
     <Compile Include="Yield.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Page Include="ClientsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ClientsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,7 +190,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EmployeesDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EmployeesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GrapeVarietiesDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -211,6 +235,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProductsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StorageDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

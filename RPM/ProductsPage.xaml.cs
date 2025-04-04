@@ -26,7 +26,7 @@ namespace RPM
         {
             InitializeComponent();
             LoadProducts();
-            this.IsVisibleChanged += ProductsPage_IsVisibleChanged;
+            this.IsVisibleChanged += Page_IsVisibleChanged;
 
         }
         private void LoadProducts()
@@ -152,11 +152,11 @@ namespace RPM
                               MessageBoxImage.Error);
             }
         }
-        private void ProductsPage_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (this.Visibility == Visibility.Visible) // Проверяем напрямую, без приведения
+            if (this.Visibility == Visibility.Visible)
             {
-                LoadProducts(); // Просто перезагружаем данные
+                LoadProducts();
             }
         }
 
