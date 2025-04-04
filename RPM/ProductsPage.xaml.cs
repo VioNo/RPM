@@ -159,5 +159,10 @@ namespace RPM
                 LoadProducts(); // Просто перезагружаем данные
             }
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+           NavigationService.Navigate(new DescriptionDB());
+        }
     }
 }

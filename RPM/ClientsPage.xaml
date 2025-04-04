@@ -25,5 +25,11 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <StackPanel>
+            <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5" />
+            <Button Content="Add" Click="AddButton_Click" Margin="5"/>
+            <Button Content="Delete" Click="DeleteButton_Click" Margin="5"/>
+            <Button Content="Update" Click="UpdateButton_Click" Margin="5"/>
+        </StackPanel>
     </Grid>
 </Page>
