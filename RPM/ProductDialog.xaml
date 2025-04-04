@@ -1,0 +1,37 @@
+﻿<Page x:Class="RPM.ProductDialog"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RPM"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ProductDialog">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="MainStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <StackPanel Margin="0,10,0,10" Orientation="Horizontal">
+            <StackPanel>
+                <TextBlock Text="Name:" Margin="0,0,0,5"/>
+                <TextBlock Text="Prime Cost:" Margin="0,0,0,5"/>
+                <TextBlock Text="Description:" Margin="0,0,0,5"/>
+                <TextBlock Text="ID Party:" Margin="0,0,0,5"/>
+                <TextBlock Text="ID Storage:" Margin="0,0,0,5"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBox x:Name="NameTextBox" ToolTip="Name" Margin="0,0,0,5"/>
+                <TextBox x:Name="PrimeCostTextBox" ToolTip="Prime Cost" Margin="0,0,0,5"/>
+                <TextBox x:Name="DescriptionTextBox" ToolTip="Description" Margin="0,0,0,5"/>
+                <TextBox x:Name="IDPartyTextBox" ToolTip="ID Party" Margin="0,0,0,5"/>
+                <TextBox x:Name="IDStorageTextBox" ToolTip="ID Storage" Margin="0,0,0,5"/>
+            </StackPanel>
+
+        </StackPanel>
+        <Button Content="Save" Click="SaveButton_Click" Width="100" Margin="10"/>
+    </Grid>
+</Page>

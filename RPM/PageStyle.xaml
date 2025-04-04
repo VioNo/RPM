@@ -2,6 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <Style TargetType="ListView">
+        <Setter Property="Margin" Value="40"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="Background" Value="#2196F3"/>
@@ -21,6 +23,10 @@
         </Setter>
     </Style>
     <Style TargetType="DataGrid">
+        <Setter Property="Margin" Value="40"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="Background" Value="#2196F3"/>
@@ -91,6 +97,14 @@
                 <Setter Property="Foreground" Value="White"/>
             </Trigger>
         </Style.Triggers>
+    </Style>
+    <Style TargetType="StackPanel">
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+    <Style TargetType="Grid">
+        <Setter Property="Background" Value="#CAC1F7"/>
     </Style>
 
 

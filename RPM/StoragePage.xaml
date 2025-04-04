@@ -15,14 +15,17 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
-        <DataGrid Name="DataGridStorage" AutoGenerateColumns="False" HorizontalAlignment="Stretch">
+        <DataGrid Name="DataGridStorage">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="IDStorage" Binding="{Binding IDStorage}" Width="Auto"/>
                 <DataGridTextColumn Header="Fullness" Binding="{Binding Fullness}" Width="Auto"/>
                 <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
-
-
+        <StackPanel>
+            <Button Content="Add" Margin="5"/>
+            <Button Content="Delete" Margin="5"/>
+            <Button Content="Save" Margin="5"/>
+        </StackPanel>
     </Grid>
 </Page>

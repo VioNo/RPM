@@ -130,6 +130,9 @@
     <Compile Include="PaymentsOrder.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductDialog.xaml.cs">
+      <DependentUpon>ProductDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Products.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -200,6 +203,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PageStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:RPM"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ProductsPage">
+      Title="ProductsPage" IsVisibleChanged="ProductsPage_IsVisibleChanged">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,16 +15,20 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
-        <ListView Name="ListViewProducts" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch">
+        <ListView Name="ListViewProducts">
             <ListView.View>
                 <GridView>
+                    <GridViewColumn Header="ID Product" DisplayMemberBinding="{Binding IDProduct}" Width="auto"/>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="auto"/>
-                    <GridViewColumn Header="IDProduct" DisplayMemberBinding="{Binding IDProduct}" Width="auto"/>
                     <GridViewColumn Header="Prime cost" DisplayMemberBinding="{Binding primecost}" Width="auto"/>
                     <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="auto"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        
+        <StackPanel>
+            <Button Content="Add" Click="AddButton_Click" Margin="5"/>
+            <Button Content="Delete" Click="DeleteButton_Click" Margin="5"/>
+            <Button Content="Update" Click="UpdateButton_Click" Margin="5"/>
+        </StackPanel>
     </Grid>
 </Page>

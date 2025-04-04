@@ -20,7 +20,7 @@ namespace RPM
         {
         }
         private static DistilleryRassvetBase _context;
-        private static DistilleryRassvetBase GetContext()
+        public static DistilleryRassvetBase GetContext()
         {
             if (_context == null)
                 _context = new DistilleryRassvetBase();

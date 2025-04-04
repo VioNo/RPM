@@ -49,10 +49,9 @@ namespace RPM
                 var client = db.Clients.AsNoTracking().FirstOrDefault(u => u.Login == login && u.Password == _hashedPassword);
                 if (client != null)
                 {
+                    UserInfoPage userInfoPage = new UserInfoPage(client);
+                    NavigationService.Navigate(userInfoPage);
                     return true;
-                    //UserInfoPage userInfoPage = new UserInfoPage(client);
-                    //NavigationService.Navigate(userInfoPage);
-                    
                 }
                 else
                 {
