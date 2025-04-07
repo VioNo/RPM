@@ -18,15 +18,17 @@
         <ListView Name="ListViewProducts">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID Product" DisplayMemberBinding="{Binding IDProduct}" Width="auto"/>
-                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="auto"/>
-                    <GridViewColumn Header="Prime cost" DisplayMemberBinding="{Binding primecost}" Width="auto"/>
-                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="auto"/>
+                    <GridViewColumn Header="ID продукта" DisplayMemberBinding="{Binding IDProduct}" Width="auto"/>
+                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" Width="auto"/>
+                    <GridViewColumn Header="Себестоимость" DisplayMemberBinding="{Binding primecost}" Width="auto"/>
+                    <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}" Width="auto"/>
+                    <GridViewColumn Header="ID партии" DisplayMemberBinding="{Binding IDParty}" Width="auto"/>
+                    <GridViewColumn Header="ID склада" DisplayMemberBinding="{Binding IDStorage}" Width="auto"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel>
-            <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5" />
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,10,0,0">
+            <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5"/>
             <Button Content="Add" Click="AddButton_Click" Margin="5"/>
             <Button Content="Delete" Click="DeleteButton_Click" Margin="5"/>
             <Button Content="Update" Click="UpdateButton_Click" Margin="5"/>

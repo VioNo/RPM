@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:RPM"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="GrapeVarietiesPage">
+      Title="GrapeVarietiesPage" IsVisibleChanged="Page_IsVisibleChanged">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -18,9 +18,9 @@
         <ListView Name="ListViewGrapeVarieties" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="IDGrapeVarieties" DisplayMemberBinding="{Binding IDGrapeVarieties}" Width="auto"/>
-                    <GridViewColumn Header="NameGrapeVarieties" DisplayMemberBinding="{Binding NameGrapeVarieties}" Width="auto"/>
-                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="auto"/>
+                    <GridViewColumn Header="ID сорта" DisplayMemberBinding="{Binding IDGrapeVarieties}" Width="auto"/>
+                    <GridViewColumn Header="Название сорта" DisplayMemberBinding="{Binding NameGrapeVarieties}" Width="auto"/>
+                    <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}" Width="auto"/>
                 </GridView>
             </ListView.View>
         </ListView>

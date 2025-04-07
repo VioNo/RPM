@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:RPM"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="StoragePage">
+      Title="StoragePage" IsVisibleChanged="Page_IsVisibleChanged">
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -15,11 +15,11 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
-        <DataGrid Name="DataGridStorage">
+        <DataGrid Name="DataGridStorage" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="IDStorage" Binding="{Binding IDStorage}" Width="Auto"/>
-                <DataGridTextColumn Header="Fullness" Binding="{Binding Fullness}" Width="Auto"/>
-                <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="Auto"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding IDStorage}" Width="Auto"/>
+                <DataGridTextColumn Header="Адрес" Binding="{Binding Address}" Width="Auto"/>
+                <DataGridTextColumn Header="Заполненность" Binding="{Binding Fullness}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel>

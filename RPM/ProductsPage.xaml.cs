@@ -59,10 +59,8 @@ namespace RPM
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            // Получаем выбранные продукты
             var productsToDelete = ListViewProducts.SelectedItems.Cast<Products>().ToList();
 
-            // Проверяем, что есть что удалять
             if (productsToDelete.Count == 0)
             {
                 MessageBox.Show("Пожалуйста, выберите хотя бы один продукт для удаления.",
@@ -72,7 +70,6 @@ namespace RPM
                 return;
             }
 
-            // Запрашиваем подтверждение
             var confirmation = MessageBox.Show($"Вы точно хотите удалить продукты в кол-ве {productsToDelete.Count}?",
                                             "Подтверждение удаления",
                                             MessageBoxButton.YesNo,
@@ -83,13 +80,10 @@ namespace RPM
 
             try
             {
-                // Используем новый контекст для операции удаления
                 using (var context = new DistilleryRassvetBase())
                 {
-                    // Получаем только ID выбранных продуктов
                     var productIds = productsToDelete.Select(p => p.IDProduct).ToList();
-
-                    // Находим продукты в базе данных
+                    
                     var existingProducts = context.Products
                         .Where(p => productIds.Contains(p.IDProduct))
                         .ToList();
@@ -103,7 +97,6 @@ namespace RPM
                         return;
                     }
 
-                    // Удаляем продукты
                     context.Products.RemoveRange(existingProducts);
                     int deletedCount = context.SaveChanges();
 
@@ -113,7 +106,7 @@ namespace RPM
                                       "Успех",
                                       MessageBoxButton.OK,
                                       MessageBoxImage.Information);
-                        LoadProducts(); // Обновляем список
+                        LoadProducts();
                     }
                     else
                     {
@@ -128,7 +121,6 @@ namespace RPM
             {
                 string errorMessage = dbEx.InnerException?.Message ?? dbEx.Message;
 
-                // Проверяем, является ли ошибка нарушением внешнего ключа
                 if (errorMessage.Contains("FK_") || errorMessage.Contains("foreign key"))
                 {
                     MessageBox.Show("Невозможно удалить продукт, так как он используется в других таблицах.",

@@ -40,7 +40,6 @@ namespace RPM
                 AddressTextBox.Text = Client.Address;
                 EmailTextBox.Text = Client.Email;
                 LoginTextBox.Text = Client.Login;
-                // Пароль не устанавливаем для безопасности
             }
         }
 
@@ -54,7 +53,6 @@ namespace RPM
                     {
                         if (Client != null && Client.IDClient > 0)
                         {
-                            // Редактирование существующего клиента
                             var existingClient = db.Clients.Find(Client.IDClient);
 
                             if (existingClient != null)
@@ -66,13 +64,11 @@ namespace RPM
                                 existingClient.Email = EmailTextBox.Text.Trim();
                                 existingClient.Login = LoginTextBox.Text.Trim();
 
-                                // Обновляем пароль только если он был изменен
                                 if (!string.IsNullOrEmpty(PasswordBox.Password))
                                 {
                                     existingClient.Password = PasswordBox.Password;
                                 }
 
-                                // Проверка валидации
                                 var validationErrors = db.GetValidationErrors();
                                 if (validationErrors.Any())
                                 {
@@ -95,7 +91,6 @@ namespace RPM
                         }
                         else
                         {
-                            // Создание нового клиента
                             var client = new Clients
                             {
                                 Name = NameTextBox.Text.Trim(),
@@ -107,7 +102,6 @@ namespace RPM
                                 Password = PasswordBox.Password
                             };
 
-                            // Проверка уникальности логина
                             if (db.Clients.Any(c => c.Login == client.Login))
                             {
                                 MessageBox.Show("Пользователь с таким логином уже существует");
@@ -173,7 +167,6 @@ namespace RPM
                 return false;
             }
 
-            // Для нового клиента проверяем пароль
             if (Client == null && string.IsNullOrEmpty(PasswordBox.Password))
             {
                 MessageBox.Show("Пожалуйста, введите пароль клиента.");

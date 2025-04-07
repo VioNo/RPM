@@ -15,7 +15,11 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
-        <StackPanel Margin="0,10,0,10" Orientation="Horizontal">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="250"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="0,10,0,10" Orientation="Horizontal" Grid.RowSpan="2">
             <StackPanel>
                 <TextBlock Text="Name:" Margin="0,0,0,5"/>
                 <TextBlock Text="Prime Cost:" Margin="0,0,0,5"/>
@@ -27,11 +31,15 @@
                 <TextBox x:Name="NameTextBox" ToolTip="Name" Margin="0,0,0,5"/>
                 <TextBox x:Name="PrimeCostTextBox" ToolTip="Prime Cost" Margin="0,0,0,5"/>
                 <TextBox x:Name="DescriptionTextBox" ToolTip="Description" Margin="0,0,0,5"/>
-                <TextBox x:Name="IDPartyTextBox" ToolTip="ID Party" Margin="0,0,0,5"/>
-                <TextBox x:Name="IDStorageTextBox" ToolTip="ID Storage" Margin="0,0,0,5"/>
+                <ComboBox x:Name="PartyComboBox" Margin="0,0,0,5"/>
+                <ComboBox x:Name="StorageComboBox" Margin="0,0,0,5"/>
             </StackPanel>
 
         </StackPanel>
-        <Button Content="Save" Click="SaveButton_Click" Width="100" Margin="10"/>
+        <StackPanel Grid.Row="2">
+            <Button Content="Save" Click="SaveButton_Click" Margin="10"/>
+            <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5"/>
+        </StackPanel>
+
     </Grid>
 </Page>

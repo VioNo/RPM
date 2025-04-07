@@ -6,23 +6,24 @@
       xmlns:local="clr-namespace:RPM"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="EmployeesPage">
+      Title="EmployeesPage" IsVisibleChanged="Page_IsVisibleChanged" >
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="PageStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </Page.Resources>
+    </Page.Resources >
     <Grid>
-        <ListView Name="ListViewEmployees" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch">
+        <ListView Name="ListViewEmployees">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="IDEmployee" DisplayMemberBinding="{Binding IDEmployee}" Width="auto"/>
-                    <GridViewColumn Header="IDJobTitle" DisplayMemberBinding="{Binding IDJobTitle}" Width="auto"/>
-                    <GridViewColumn Header="FullName" DisplayMemberBinding="{Binding FullName}" Width="auto"/>
-                    <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Phone}" Width="auto"/>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDEmployee}" Width="auto"/>
+                    <GridViewColumn Header="ФИО" DisplayMemberBinding="{Binding FullName}" Width="auto"/>
+                    <GridViewColumn Header="Должность" DisplayMemberBinding="{Binding JobTitles.Title}" Width="auto"/>
+                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Phone}" Width="auto"/>
                     <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="auto"/>
+                    <GridViewColumn Header="Дата приема" DisplayMemberBinding="{Binding DateStartedWork, StringFormat=dd.MM.yyyy}" Width="auto"/>
                 </GridView>
             </ListView.View>
         </ListView>

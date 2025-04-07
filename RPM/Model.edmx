@@ -32,7 +32,7 @@
           <Property Name="IDEmployee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDJobTitle" Type="int" Nullable="false" />
           <Property Name="FullName" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Phone" Type="int" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar(max)" Nullable="false" />
           <Property Name="DataPassport" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
           <Property Name="DateStartedWork" Type="date" Nullable="false" />
@@ -121,7 +121,7 @@
           <Property Name="IDStorage" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
           <Property Name="primecost" Type="money" />
-          <Property Name="Description" Type="nchar" MaxLength="10" />
+          <Property Name="Description" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Shipments">
           <Key>
@@ -544,7 +544,7 @@
           <Property Name="IDEmployee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDJobTitle" Type="Int32" Nullable="false" />
           <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Phone" Type="Int32" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DataPassport" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateStartedWork" Type="DateTime" Nullable="false" Precision="0" />
@@ -657,7 +657,7 @@
           <Property Name="IDStorage" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="primecost" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Description" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Orders" Relationship="Self.FK__Заказы__IDТовара__534D60F1" FromRole="Products" ToRole="Orders" />
           <NavigationProperty Name="Party" Relationship="Self.FK_Товар_Партии" FromRole="Products" ToRole="Party" />
           <NavigationProperty Name="Storage" Relationship="Self.FK__Товар__IDСклада__4F7CD00D" FromRole="Products" ToRole="Storage" />

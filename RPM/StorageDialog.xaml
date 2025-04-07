@@ -7,8 +7,27 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="StorageDialog">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="MainStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid >
+        <StackPanel Margin="0,5">
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Адрес:" Margin="0,5"/>
+                <TextBox x:Name="AddressTextBox" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Заполненность:" Margin="0,5" Width="125"/>
+                <TextBox x:Name="FullnessTextBox" />
+                <TextBlock Text="%" Width="20"/>
+            </StackPanel>
+            <Button Content="Save" Click="SaveButton_Click" Margin="10" />
+                <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5"/>
+        </StackPanel>
 
-    <Grid>
-        
     </Grid>
 </Page>

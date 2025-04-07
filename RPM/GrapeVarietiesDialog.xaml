@@ -7,8 +7,27 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="GrapeVarietiesDialog">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="MainStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid Margin="10">
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Название сорта:" Width="150"/>
+                <TextBox x:Name="NameTextBox" Width="300"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,5">
+                <TextBlock Text="Описание:" Width="150"/>
+                <TextBox x:Name="DescriptionTextBox" Width="300"
+                         TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+            </StackPanel>
 
-    <Grid>
-        
+            <Button Content="Save" Click="SaveButton_Click" Margin="20" />
+            <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5"/>
+        </StackPanel>
     </Grid>
 </Page>

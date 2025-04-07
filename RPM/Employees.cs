@@ -23,7 +23,7 @@ namespace RPM
         public int IDEmployee { get; set; }
         public int IDJobTitle { get; set; }
         public string FullName { get; set; }
-        public int Phone { get; set; }
+        public string Phone { get; set; }
         public string DataPassport { get; set; }
         public string Email { get; set; }
         public System.DateTime DateStartedWork { get; set; }
