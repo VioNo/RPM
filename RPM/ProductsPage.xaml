@@ -15,7 +15,50 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
-        <ListView Name="ListViewProducts">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Search and Filter Panel -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+            <!-- Search by Name -->
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="5" 
+                     TextChanged="SearchTextBox_TextChanged" 
+                     Tag="Поиск по названию..."
+                     ToolTip="Введите текст для поиска по названию продукта"/>
+
+            <!-- Sort Options -->
+            <ComboBox x:Name="SortComboBox" Width="200" Margin="5" 
+                      SelectionChanged="SortComboBox_SelectionChanged"
+                      ToolTip="Выберите способ сортировки"
+                      SelectedIndex="0">
+                <ComboBoxItem Content="Сортировка по ID (возр.)" Tag="id_asc"/>
+                <ComboBoxItem Content="Сортировка по ID (убыв.)" Tag="id_desc"/>
+                <ComboBoxItem Content="Сортировка по названию (А-Я)" Tag="name_asc"/>
+                <ComboBoxItem Content="Сортировка по названию (Я-А)" Tag="name_desc"/>
+                <ComboBoxItem Content="Сортировка по себестоимости (возр.)" Tag="cost_asc"/>
+                <ComboBoxItem Content="Сортировка по себестоимости (убыв.)" Tag="cost_desc"/>
+            </ComboBox>
+
+            <!-- Filter by Party ID -->
+            <TextBox x:Name="PartyFilterTextBox" Width="120" Margin="5" 
+                     TextChanged="FilterTextBox_TextChanged"
+                     Tag="Фильтр по ID партии"
+                     ToolTip="Введите ID партии для фильтрации"/>
+
+            <!-- Filter by Storage ID -->
+            <TextBox x:Name="StorageFilterTextBox" Width="120" Margin="5" 
+                     TextChanged="FilterTextBox_TextChanged"
+                     Tag="Фильтр по ID склада"
+                     ToolTip="Введите ID склада для фильтрации"/>
+        </StackPanel>
+
+        <!-- ListView -->
+        <ListView Name="ListViewProducts" Grid.Row="1" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  ToolTip="Список продуктов. Выделите строку для редактирования или удаления">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID продукта" DisplayMemberBinding="{Binding IDProduct}" Width="auto"/>
@@ -27,11 +70,17 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,10,0,0">
-            <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5"/>
-            <Button Content="Add" Click="AddButton_Click" Margin="5"/>
-            <Button Content="Delete" Click="DeleteButton_Click" Margin="5"/>
-            <Button Content="Update" Click="UpdateButton_Click" Margin="5"/>
+
+        <!-- Buttons Panel -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="Back" Content="Назад" Click="BackButton_Click" Margin="5"
+                    ToolTip="Вернуться на предыдущую страницу"/>
+            <Button Content="Добавить" Click="AddButton_Click" Margin="5"
+                    ToolTip="Добавить новый продукт"/>
+            <Button Content="Удалить" Click="DeleteButton_Click" Margin="5"
+                    ToolTip="Удалить выбранный продукт"/>
+            <Button Content="Изменить" Click="UpdateButton_Click" Margin="5"
+                    ToolTip="Редактировать выбранный продукт"/>
         </StackPanel>
     </Grid>
 </Page>

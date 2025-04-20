@@ -10,6 +10,11 @@ namespace RPM
 {
     public partial class GrapeVarietiesPage : Page
     {
+        private List<GrapeVarieties> _allVarieties;
+        private string _currentSort = "id_asc";
+        private string _currentSearch = "";
+        private string _currentFilter = "";
+
         public GrapeVarietiesPage()
         {
             InitializeComponent();
@@ -21,8 +26,71 @@ namespace RPM
         {
             using (var context = new DistilleryRassvetBase())
             {
-                var varieties = context.GrapeVarieties.ToList();
-                ListViewGrapeVarieties.ItemsSource = varieties;
+                _allVarieties = context.GrapeVarieties.ToList();
+                ApplyFiltersAndSort();
+            }
+        }
+
+        private void ApplyFiltersAndSort()
+        {
+            IEnumerable<GrapeVarieties> result = _allVarieties;
+
+            // Apply search filter
+            if (!string.IsNullOrWhiteSpace(_currentSearch))
+            {
+                result = result.Where(v => v.NameGrapeVarieties != null &&
+                                         v.NameGrapeVarieties.ToLower().Contains(_currentSearch.ToLower()));
+            }
+
+            // Apply description filter
+            if (!string.IsNullOrWhiteSpace(_currentFilter))
+            {
+                result = result.Where(v => v.Description != null &&
+                                         v.Description.ToLower().Contains(_currentFilter.ToLower()));
+            }
+
+            // Apply sorting
+            switch (_currentSort)
+            {
+                case "id_asc":
+                    result = result.OrderBy(v => v.IDGrapeVarieties);
+                    break;
+                case "id_desc":
+                    result = result.OrderByDescending(v => v.IDGrapeVarieties);
+                    break;
+                case "name_asc":
+                    result = result.OrderBy(v => v.NameGrapeVarieties);
+                    break;
+                case "name_desc":
+                    result = result.OrderByDescending(v => v.NameGrapeVarieties);
+                    break;
+                default:
+                    result = result.OrderBy(v => v.IDGrapeVarieties);
+                    break;
+            }
+
+            ListViewGrapeVarieties.ItemsSource = result.ToList();
+        }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _currentSearch = SearchTextBox.Text;
+            ApplyFiltersAndSort();
+        }
+
+        private void FilterTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            _currentFilter = FilterTextBox.Text;
+            ApplyFiltersAndSort();
+        }
+
+        private void SortComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SortComboBox.SelectedItem != null)
+            {
+                var selectedItem = (ComboBoxItem)SortComboBox.SelectedItem;
+                _currentSort = selectedItem.Tag.ToString();
+                ApplyFiltersAndSort();
             }
         }
 

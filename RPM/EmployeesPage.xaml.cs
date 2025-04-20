@@ -11,20 +11,89 @@ namespace RPM
 {
     public partial class EmployeesPage : Page
     {
+        private List<Employees> _allEmployees = new List<Employees>();
+        private List<JobTitles> _jobTitles = new List<JobTitles>();
+
         public EmployeesPage()
         {
             InitializeComponent();
-            LoadEmployees();
+            LoadData();
             this.IsVisibleChanged += Page_IsVisibleChanged;
         }
 
-        private void LoadEmployees()
+        private void LoadData()
         {
             using (var context = new DistilleryRassvetBase())
             {
-                var employees = context.Employees.Include("JobTitles").ToList();
-                ListViewEmployees.ItemsSource = employees;
+                _allEmployees = context.Employees.Include("JobTitles").ToList();
+                _jobTitles = context.JobTitles.ToList();
+
+                // Добавляем элемент "Все должности" в начало списка
+                var jobTitlesWithAll = new List<JobTitles> { new JobTitles { JobTitle = "Все должности" } };
+                jobTitlesWithAll.AddRange(_jobTitles);
+
+                JobTitleComboBox.ItemsSource = jobTitlesWithAll;
+                JobTitleComboBox.SelectedIndex = 0;
+
+                ListViewEmployees.ItemsSource = _allEmployees;
             }
+        }
+
+
+        private void ApplyFilters()
+        {
+            var filteredEmployees = _allEmployees.AsEnumerable();
+
+            // Применение фильтра по полному имени
+            if (!string.IsNullOrWhiteSpace(FullNameSearchTextBox.Text))
+            {
+                string searchText = FullNameSearchTextBox.Text.ToLower();
+                filteredEmployees = filteredEmployees.Where(emp =>
+                    emp.FullName != null && emp.FullName.ToLower().Contains(searchText));
+            }
+
+            // Применение фильтра по должности
+            if (JobTitleComboBox.SelectedItem is JobTitles selectedJob &&
+                selectedJob.JobTitle != "Все должности")
+            {
+                filteredEmployees = filteredEmployees.Where(emp =>
+                    emp.JobTitles != null && emp.JobTitles.IDJobTitle == selectedJob.IDJobTitle);
+            }
+
+            //// Применение фильтра по дате найма
+            //if (HireDateFilterPicker.SelectedDate.HasValue)
+            //{
+            //    DateTime selectedDate = HireDateFilterPicker.SelectedDate.Value.Date;
+            //    filteredEmployees = filteredEmployees.Where(emp =>
+            //        emp.DateStartedWork.HasValue &&
+            //        emp.DateStartedWork.Value.Date == selectedDate);
+            //}
+
+            ListViewEmployees.ItemsSource = filteredEmployees.ToList();
+        }
+
+        private void FullNameSearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ApplyFilters();
+        }
+
+        private void JobTitleComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ApplyFilters();
+        }
+
+        private void HireDateFilterPicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ApplyFilters();
+        }
+
+        private void SortByFirstLetter_Click(object sender, RoutedEventArgs e)
+        {
+            var employees = ListViewEmployees.ItemsSource as IEnumerable<Employees> ?? _allEmployees;
+
+            ListViewEmployees.ItemsSource = employees
+                .OrderBy(emp => !string.IsNullOrEmpty(emp.FullName) ? emp.FullName[0].ToString() : "")
+                .ToList();
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
@@ -86,7 +155,7 @@ namespace RPM
                                   "Успех",
                                   MessageBoxButton.OK,
                                   MessageBoxImage.Information);
-                    LoadEmployees();
+                    LoadData();
                 }
             }
             catch (DbUpdateException dbEx)
@@ -110,7 +179,7 @@ namespace RPM
         {
             if (this.Visibility == Visibility.Visible)
             {
-                LoadEmployees();
+                LoadData();
             }
         }
 

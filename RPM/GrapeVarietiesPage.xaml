@@ -15,7 +15,37 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
-        <ListView Name="ListViewGrapeVarieties" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Search and Filter Panel -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="5" 
+                     TextChanged="SearchTextBox_TextChanged" 
+                     Tag="Поиск по названию..."
+                     ToolTip="Поиск по названию..."/>
+
+            <ComboBox x:Name="SortComboBox" Width="150" Margin="5" 
+                      SelectionChanged="SortComboBox_SelectionChanged">
+                <ComboBoxItem Content="Сортировка по ID (возр.)" Tag="id_asc"/>
+                <ComboBoxItem Content="Сортировка по ID (убыв.)" Tag="id_desc"/>
+                <ComboBoxItem Content="Сортировка по названию (А-Я)" Tag="name_asc"/>
+                <ComboBoxItem Content="Сортировка по названию (Я-А)" Tag="name_desc"/>
+            </ComboBox>
+
+            <TextBox x:Name="FilterTextBox" Width="200" Margin="5" 
+                     TextChanged="FilterTextBox_TextChanged" 
+                     Tag="Фильтр по описанию..."
+                     ToolTip="Фильтр по описанию..."/>
+        </StackPanel>
+
+        <!-- ListView -->
+        <ListView Name="ListViewGrapeVarieties" Grid.Row="1" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                  HorizontalAlignment="Stretch">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID сорта" DisplayMemberBinding="{Binding IDGrapeVarieties}" Width="auto"/>
@@ -24,11 +54,13 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel>
-            <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5" />
-            <Button Content="Add" Click="AddButton_Click" Margin="5"/>
-            <Button Content="Delete" Click="DeleteButton_Click" Margin="5"/>
-            <Button Content="Update" Click="UpdateButton_Click" Margin="5"/>
+
+        <!-- Buttons Panel -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button x:Name="Back" Content="Назад" Click="BackButton_Click" Margin="5"/>
+            <Button Content="Добавить" Click="AddButton_Click" Margin="5"/>
+            <Button Content="Удалить" Click="DeleteButton_Click" Margin="5"/>
+            <Button Content="Изменить" Click="UpdateButton_Click" Margin="5"/>
         </StackPanel>
     </Grid>
 </Page>

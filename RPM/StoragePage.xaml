@@ -15,18 +15,49 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
-        <DataGrid Name="DataGridStorage" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Search and Filter Panel -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="5" 
+                     TextChanged="SearchTextBox_TextChanged" 
+                     ToolTip="Поиск по адресу"/>
+
+            <ComboBox x:Name="FilterComboBox" Width="150" Margin="5" 
+                      SelectionChanged="FilterComboBox_SelectionChanged"
+                      ToolTip="Фильтр по заполненности">
+                <ComboBoxItem Content="Все склады" IsSelected="True"/>
+                <ComboBoxItem Content="Пустые (0%)"/>
+                <ComboBoxItem Content="Менее 50%"/>
+                <ComboBoxItem Content="50-80%"/>
+                <ComboBoxItem Content="Более 80%"/>
+                <ComboBoxItem Content="Полные (100%)"/>
+            </ComboBox>
+
+            <Button Content="Сортировать по ID" Margin="5" 
+                    Click="SortButton_Click" 
+                    ToolTip="Сортировка по возрастанию/убыванию ID"/>
+        </StackPanel>
+
+        <!-- Data Grid -->
+        <DataGrid Grid.Row="1" Name="DataGridStorage" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding IDStorage}" Width="Auto"/>
-                <DataGridTextColumn Header="Адрес" Binding="{Binding Address}" Width="Auto"/>
+                <DataGridTextColumn Header="Адрес" Binding="{Binding Address}" Width="*"/>
                 <DataGridTextColumn Header="Заполненность" Binding="{Binding Fullness}" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel>
-            <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5" />
-            <Button Content="Add" Click="AddButton_Click" Margin="5"/>
-            <Button Content="Delete" Click="DeleteButton_Click" Margin="5"/>
-            <Button Content="Update" Click="UpdateButton_Click" Margin="5"/>
+
+        <!-- Action Buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button x:Name="Back" Content="Назад" Click="BackButton_Click" Margin="5" />
+            <Button Content="Добавить" Click="AddButton_Click" Margin="5"/>
+            <Button Content="Удалить" Click="DeleteButton_Click" Margin="5"/>
+            <Button Content="Обновить" Click="UpdateButton_Click" Margin="5"/>
         </StackPanel>
     </Grid>
 </Page>

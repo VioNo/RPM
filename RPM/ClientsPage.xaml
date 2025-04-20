@@ -15,7 +15,28 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
-        <ListView Name="ListViewClients" ScrollViewer.HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Search and Filter Controls -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="5" 
+                     TextChanged="SearchTextBox_TextChanged" 
+                     ToolTip="Search by Name or Surname"/>
+            <TextBox x:Name="EmailFilterTextBox" Width="200" Margin="5" 
+                     TextChanged="EmailFilterTextBox_TextChanged"
+                     ToolTip="Filter by Email"/>
+            <Button Content="Sort by Phone" Click="SortByPhone_Click" Margin="5"
+                    ToolTip="Sort by first digit in phone number"/>
+        </StackPanel>
+
+        <!-- Clients List -->
+        <ListView Name="ListViewClients" Grid.Row="1" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 HorizontalAlignment="Stretch">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="auto"/>
@@ -25,7 +46,9 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel>
+
+        <!-- Action Buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5" />
             <Button Content="Add" Click="AddButton_Click" Margin="5"/>
             <Button Content="Delete" Click="DeleteButton_Click" Margin="5"/>

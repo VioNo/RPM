@@ -10,67 +10,206 @@ namespace RPM
 {
     public partial class StoragePage : Page
     {
+        private List<Storage> _allStorages;
+        private bool _sortAscending = true;
+        private bool _isInitialized = false;
+
         public StoragePage()
         {
-            InitializeComponent();
-            LoadStorage();
-            this.IsVisibleChanged += Page_IsVisibleChanged;
+            try
+            {
+                InitializeComponent();
+                _allStorages = new List<Storage>();
+                _isInitialized = true;
+                this.Loaded += Page_Loaded;
+                this.IsVisibleChanged += Page_IsVisibleChanged;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка инициализации страницы: {ex.Message}",
+                              "Ошибка",
+                              MessageBoxButton.OK,
+                              MessageBoxImage.Error);
+            }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (_isInitialized && DataGridStorage != null)
+            {
+                LoadStorage();
+            }
         }
 
         private void LoadStorage()
         {
-            using (var context = new DistilleryRassvetBase())
+            try
             {
-                var storage = context.Storage.ToList();
-                DataGridStorage.ItemsSource = storage;
+                using (var context = new DistilleryRassvetBase())
+                {
+                    _allStorages = context.Storage.ToList() ?? new List<Storage>();
+                    SafeApplyFiltersAndSearch();
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка загрузки данных: {ex.Message}",
+                              "Ошибка",
+                              MessageBoxButton.OK,
+                              MessageBoxImage.Error);
+                _allStorages = new List<Storage>();
+                SafeApplyFiltersAndSearch();
+            }
+        }
+
+        private void SafeApplyFiltersAndSearch()
+        {
+            if (!_isInitialized || DataGridStorage == null) return;
+            ApplyFiltersAndSearch();
+        }
+
+        private void ApplyFiltersAndSearch()
+        {
+            if (!_isInitialized || DataGridStorage == null || _allStorages == null)
+                return;
+
+            try
+            {
+                var filteredStorages = _allStorages.AsQueryable();
+
+                // Apply search filter
+                if (SearchTextBox != null && !string.IsNullOrWhiteSpace(SearchTextBox.Text))
+                {
+                    string searchText = SearchTextBox.Text.ToLower();
+                    filteredStorages = filteredStorages.Where(s =>
+                        s.Address != null && s.Address.ToLower().Contains(searchText));
+                }
+
+                // Apply fullness filter
+                if (FilterComboBox?.SelectedItem is ComboBoxItem selectedItem)
+                {
+                    switch (selectedItem.Content.ToString())
+                    {
+                        case "Пустые (0%)":
+                            filteredStorages = filteredStorages.Where(s => s.Fullness == 0);
+                            break;
+                        case "Менее 50%":
+                            filteredStorages = filteredStorages.Where(s => s.Fullness > 0 && s.Fullness < 50);
+                            break;
+                        case "50-80%":
+                            filteredStorages = filteredStorages.Where(s => s.Fullness >= 50 && s.Fullness <= 80);
+                            break;
+                        case "Более 80%":
+                            filteredStorages = filteredStorages.Where(s => s.Fullness > 80 && s.Fullness < 100);
+                            break;
+                        case "Полные (100%)":
+                            filteredStorages = filteredStorages.Where(s => s.Fullness == 100);
+                            break;
+                    }
+                }
+
+                // Apply sorting
+                filteredStorages = _sortAscending
+                    ? filteredStorages.OrderBy(s => s.IDStorage)
+                    : filteredStorages.OrderByDescending(s => s.IDStorage);
+
+                DataGridStorage.ItemsSource = filteredStorages.ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при фильтрации данных: {ex.Message}",
+                              "Ошибка",
+                              MessageBoxButton.OK,
+                              MessageBoxImage.Error);
+            }
+        }
+
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            SafeApplyFiltersAndSearch();
+        }
+
+        private void FilterComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SafeApplyFiltersAndSearch();
+        }
+
+        private void SortButton_Click(object sender, RoutedEventArgs e)
+        {
+            _sortAscending = !_sortAscending;
+            SafeApplyFiltersAndSearch();
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            StorageDialog dialog = new StorageDialog(null);
-            NavigationService.Navigate(dialog);
+            try
+            {
+                NavigationService?.Navigate(new StorageDialog(null));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка открытия формы: {ex.Message}",
+                              "Ошибка",
+                              MessageBoxButton.OK,
+                              MessageBoxImage.Error);
+            }
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            var selectedStorage = DataGridStorage.SelectedItem as Storage;
-            if (selectedStorage != null)
+            try
             {
-                StorageDialog dialog = new StorageDialog(selectedStorage);
-                NavigationService.Navigate(dialog);
+                if (DataGridStorage?.SelectedItem is Storage selectedStorage)
+                {
+                    NavigationService?.Navigate(new StorageDialog(selectedStorage));
+                }
+                else
+                {
+                    MessageBox.Show("Пожалуйста, выберите склад для редактирования.",
+                                  "Предупреждение",
+                                  MessageBoxButton.OK,
+                                  MessageBoxImage.Warning);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Пожалуйста, выберите склад для редактирования.",
-                              "Предупреждение",
+                MessageBox.Show($"Ошибка открытия формы: {ex.Message}",
+                              "Ошибка",
                               MessageBoxButton.OK,
-                              MessageBoxImage.Warning);
+                              MessageBoxImage.Error);
             }
         }
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            var storageToDelete = DataGridStorage.SelectedItems.Cast<Storage>().ToList();
-
-            if (storageToDelete.Count == 0)
-            {
-                MessageBox.Show("Пожалуйста, выберите хотя бы один склад для удаления.",
-                              "Предупреждение",
-                              MessageBoxButton.OK,
-                              MessageBoxImage.Warning);
-                return;
-            }
-
-            var confirmation = MessageBox.Show($"Вы точно хотите удалить {storageToDelete.Count} склад(ов)?",
-                                          "Подтверждение удаления",
-                                          MessageBoxButton.YesNo,
-                                          MessageBoxImage.Question);
-
-            if (confirmation != MessageBoxResult.Yes) return;
-
             try
             {
+                if (DataGridStorage?.SelectedItems == null)
+                {
+                    MessageBox.Show("Пожалуйста, выберите хотя бы один склад для удаления.",
+                                  "Предупреждение",
+                                  MessageBoxButton.OK,
+                                  MessageBoxImage.Warning);
+                    return;
+                }
+
+                var storageToDelete = DataGridStorage.SelectedItems.Cast<Storage>().ToList();
+                if (storageToDelete.Count == 0)
+                {
+                    MessageBox.Show("Пожалуйста, выберите хотя бы один склад для удаления.",
+                                  "Предупреждение",
+                                  MessageBoxButton.OK,
+                                  MessageBoxImage.Warning);
+                    return;
+                }
+
+                var confirmation = MessageBox.Show($"Вы точно хотите удалить {storageToDelete.Count} склад(ов)?",
+                                              "Подтверждение удаления",
+                                              MessageBoxButton.YesNo,
+                                              MessageBoxImage.Question);
+
+                if (confirmation != MessageBoxResult.Yes) return;
+
                 using (var context = new DistilleryRassvetBase())
                 {
                     var storageIds = storageToDelete.Select(s => s.IDStorage).ToList();
@@ -107,7 +246,7 @@ namespace RPM
 
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (this.Visibility == Visibility.Visible)
+            if (this.Visibility == Visibility.Visible && _isInitialized)
             {
                 LoadStorage();
             }
@@ -115,7 +254,17 @@ namespace RPM
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new DescriptionDB());
+            try
+            {
+                NavigationService?.Navigate(new DescriptionDB());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка навигации: {ex.Message}",
+                              "Ошибка",
+                              MessageBoxButton.OK,
+                              MessageBoxImage.Error);
+            }
         }
     }
 }
