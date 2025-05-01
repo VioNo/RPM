@@ -57,13 +57,27 @@ namespace RPM
             {
                 _clients = db.Clients.ToList();
                 _products = db.Products.ToList();
-                _employees = db.Employees.ToList();
+
+                // Для сотрудников используем FullName вместо Name
+                _employees = db.Employees
+                    .Include("JobTitles") // Если нужно отображать должность
+                    .ToList();
+
                 _payments = db.Payment.ToList();
 
                 ClientComboBox.ItemsSource = _clients;
+
                 ProductComboBox.ItemsSource = _products;
+                ProductComboBox.DisplayMemberPath = "Name"; 
+                ProductComboBox.SelectedValuePath = "IDProduct";
+
                 EmployeeComboBox.ItemsSource = _employees;
+                EmployeeComboBox.DisplayMemberPath = "FullName"; 
+                EmployeeComboBox.SelectedValuePath = "IDEmployee";
+
                 PaymentComboBox.ItemsSource = _payments;
+                PaymentComboBox.DisplayMemberPath = "PaymentMethod"; 
+                PaymentComboBox.SelectedValuePath = "IDPayment";
             }
         }
 

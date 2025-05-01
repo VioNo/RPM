@@ -20,7 +20,7 @@
                 <TextBlock Text="Payment Method:" Width="150"/>
                 <TextBox x:Name="MethodTextBox" Width="200"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20">
+            <StackPanel  HorizontalAlignment="Center" Margin="0,20">
                 <Button Content="Save" Click="SaveButton_Click" Width="100" Margin="5"/>
                 <Button Content="Back" Click="BackButton_Click" Width="100" Margin="5"/>
             </StackPanel>

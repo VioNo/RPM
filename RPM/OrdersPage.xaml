@@ -23,13 +23,13 @@
 
         <!-- Search and Filter Controls -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
-            <DatePicker x:Name="DateFromFilter" Width="150" Margin="5"
+            <DatePicker x:Name="DateFromFilter" Width="100" Margin="5"
                        SelectedDateChanged="DateFilter_Changed"
                        ToolTip="Filter from date"/>
-            <DatePicker x:Name="DateToFilter" Width="150" Margin="5"
+            <DatePicker x:Name="DateToFilter" Width="100" Margin="5"
                        SelectedDateChanged="DateFilter_Changed"
                        ToolTip="Filter to date"/>
-            <TextBox x:Name="ClientSearchTextBox" Width="200" Margin="5"
+            <TextBox x:Name="ClientSearchTextBox" Width="150" Margin="5"
                     TextChanged="SearchTextBox_TextChanged"
                     ToolTip="Search by client name"/>
             <Button Content="Sort by Date" Click="SortByDate_Click" Margin="5"
