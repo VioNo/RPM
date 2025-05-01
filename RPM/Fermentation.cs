@@ -14,18 +14,26 @@ namespace RPM
     
     public partial class Fermentation
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Fermentation()
+        {
+            this.StorageWine = new HashSet<StorageWine>();
+        }
+    
         public int IDFermentation { get; set; }
         public int IDYield { get; set; }
         public System.DateTime StartDate { get; set; }
         public System.DateTime EndDate { get; set; }
         public decimal Temperature { get; set; }
         public decimal LevelSugar { get; set; }
-        public int IDParty { get; set; }
         public string Description { get; set; }
         public int IDGrowingConditions { get; set; }
+        public Nullable<int> Count { get; set; }
+        public string Measure { get; set; }
     
         public virtual Yield Yield { get; set; }
-        public virtual Party Party { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<StorageWine> StorageWine { get; set; }
         public virtual GrowingConditions GrowingConditions { get; set; }
     }
 }

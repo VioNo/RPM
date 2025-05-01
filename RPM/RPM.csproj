@@ -79,6 +79,12 @@
     <Compile Include="Climate.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ClimateDialog.xaml.cs">
+      <DependentUpon>ClimateDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ClimatePage.xaml.cs">
+      <DependentUpon>ClimatePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DescriptionDB.xaml.cs">
       <DependentUpon>DescriptionDB.xaml</DependentUpon>
     </Compile>
@@ -94,6 +100,12 @@
     <Compile Include="Fermentation.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="FermentationDialog.xaml.cs">
+      <DependentUpon>FermentationDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FermentationPage.xaml.cs">
+      <DependentUpon>FermentationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GrapeVarieties.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -106,8 +118,20 @@
     <Compile Include="GrowingConditions.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="GrowingConditionsDialog.xaml.cs">
+      <DependentUpon>GrowingConditionsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GrowingConditionsPage.xaml.cs">
+      <DependentUpon>GrowingConditionsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="JobTitles.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="JobTitlesDialog.xaml.cs">
+      <DependentUpon>JobTitlesDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="JobTitlesPage.xaml.cs">
+      <DependentUpon>JobTitlesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -130,14 +154,38 @@
     <Compile Include="Orders.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="OrdersDialog.xaml.cs">
+      <DependentUpon>OrdersDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersPage.xaml.cs">
+      <DependentUpon>OrdersPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Party.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PartyDialog.xaml.cs">
+      <DependentUpon>PartyDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PartyPage.xaml.cs">
+      <DependentUpon>PartyPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Payment.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="PaymentDialog.xaml.cs">
+      <DependentUpon>PaymentDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentPage.xaml.cs">
+      <DependentUpon>PaymentPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PaymentsOrder.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentsOrderDilog.xaml.cs">
+      <DependentUpon>PaymentsOrderDilog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentsOrderPage.xaml.cs">
+      <DependentUpon>PaymentsOrderPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProductDialog.xaml.cs">
       <DependentUpon>ProductDialog.xaml</DependentUpon>
@@ -151,8 +199,20 @@
     <Compile Include="Shipments.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ShipmentsDialog.xaml.cs">
+      <DependentUpon>ShipmentsDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ShipmentsPage.xaml.cs">
+      <DependentUpon>ShipmentsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Soil.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SoilDialog.xaml.cs">
+      <DependentUpon>SoilDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SoilPage.xaml.cs">
+      <DependentUpon>SoilPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Storage.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -166,6 +226,12 @@
     <Compile Include="StorageWine.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="StorageWineDialog.xaml.cs">
+      <DependentUpon>StorageWineDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="StorageWinePage.xaml.cs">
+      <DependentUpon>StorageWinePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -175,14 +241,34 @@
     <Compile Include="Water.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="WaterDialog.xaml.cs">
+      <DependentUpon>WaterDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WaterPage.xaml.cs">
+      <DependentUpon>WaterPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Yield.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="YieldDialog.xaml.cs">
+      <DependentUpon>YieldDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="YieldPage.xaml.cs">
+      <DependentUpon>YieldPage.xaml</DependentUpon>
     </Compile>
     <Page Include="ClientsDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ClientsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClimateDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ClimatePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -198,11 +284,35 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="FermentationDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FermentationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GrapeVarietiesDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GrapeVarietiesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GrowingConditionsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GrowingConditionsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="JobTitlesDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="JobTitlesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -226,7 +336,39 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="OrdersDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PageStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PartyDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PartyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PaymentDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PaymentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PaymentsOrderDilog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PaymentsOrderPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -238,6 +380,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ShipmentsDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ShipmentsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SoilDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SoilPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="StorageDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -246,7 +404,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="StorageWineDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StorageWinePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WaterDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WaterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YieldDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YieldPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -22,10 +22,12 @@ namespace RPM
     
         public int IDProduct { get; set; }
         public int IDParty { get; set; }
-        public int IDStorage { get; set; }
+        public int IDStorageWine { get; set; }
         public string Name { get; set; }
-        public Nullable<decimal> primecost { get; set; }
+        public Nullable<decimal> PrimeCost { get; set; }
         public string Description { get; set; }
+        public Nullable<int> Count { get; set; }
+        public string Measure { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Orders> Orders { get; set; }

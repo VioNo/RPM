@@ -17,7 +17,6 @@ namespace RPM
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Party()
         {
-            this.Fermentation = new HashSet<Fermentation>();
             this.Shipments = new HashSet<Shipments>();
             this.StorageWine = new HashSet<StorageWine>();
             this.Products = new HashSet<Products>();
@@ -25,9 +24,9 @@ namespace RPM
     
         public int IDParty { get; set; }
         public string PartyDescription { get; set; }
+        public Nullable<int> Count { get; set; }
+        public string Measure { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Fermentation> Fermentation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Shipments> Shipments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

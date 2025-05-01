@@ -16,11 +16,13 @@ namespace RPM
     {
         public int IDStorageWine { get; set; }
         public int IDFermentation { get; set; }
-        public int IDStorage { get; set; }
         public string IDGrowingConditions { get; set; }
         public System.DateTime ExpirationDate { get; set; }
         public int IDParty { get; set; }
+        public Nullable<int> Count { get; set; }
+        public string Measure { get; set; }
     
+        public virtual Fermentation Fermentation { get; set; }
         public virtual Party Party { get; set; }
     }
 }

@@ -175,6 +175,11 @@ namespace RPM
 
             return true;
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }
 

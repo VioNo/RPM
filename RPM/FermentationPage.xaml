@@ -1,0 +1,64 @@
+﻿<Page x:Class="RPM.FermentationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RPM"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="FermentationPage" IsVisibleChanged="Page_IsVisibleChanged">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="PageStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Search and Filter Controls -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="5" 
+                     TextChanged="SearchTextBox_TextChanged" 
+                     ToolTip="Search by Description"/>
+            <DatePicker x:Name="StartDateFilter" Width="150" Margin="5"
+                       SelectedDateChanged="DateFilter_Changed"
+                       ToolTip="Filter by Start Date"/>
+            <DatePicker x:Name="EndDateFilter" Width="150" Margin="5"
+                       SelectedDateChanged="DateFilter_Changed"
+                       ToolTip="Filter by End Date"/>
+            <Button Content="Sort by Temperature" Click="SortByTemperature_Click" Margin="5"
+                    ToolTip="Sort by fermentation temperature"/>
+        </StackPanel>
+
+        <!-- Fermentation List -->
+        <ListView Name="ListViewFermentation" Grid.Row="1" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 HorizontalAlignment="Stretch">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Start Date" DisplayMemberBinding="{Binding StartDate, StringFormat={}{0:dd.MM.yyyy}}" Width="auto"/>
+                    <GridViewColumn Header="End Date" DisplayMemberBinding="{Binding EndDate, StringFormat={}{0:dd.MM.yyyy}}" Width="auto"/>
+                    <GridViewColumn Header="Temperature" DisplayMemberBinding="{Binding Temperature}" Width="auto"/>
+                    <GridViewColumn Header="Sugar Level" DisplayMemberBinding="{Binding LevelSugar}" Width="auto"/>
+                    <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="auto"/>
+                    <GridViewColumn Header="Count" DisplayMemberBinding="{Binding Count}" Width="auto"/>
+                    <GridViewColumn Header="Measure" DisplayMemberBinding="{Binding Measure}" Width="auto"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!-- Action Buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5" />
+            <Button Content="Add" Click="AddButton_Click" Margin="5"/>
+            <Button Content="Delete" Click="DeleteButton_Click" Margin="5"/>
+            <Button Content="Update" Click="UpdateButton_Click" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Page>

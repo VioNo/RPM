@@ -86,7 +86,7 @@ namespace RPM
                 {
                     if (int.TryParse(_currentStorageFilter, out int storageId))
                     {
-                        result = result.Where(p => p.IDStorage == storageId);
+                        result = result.Where(p => p.IDStorageWine == storageId);
                     }
                 }
 
@@ -106,10 +106,10 @@ namespace RPM
                         result = result.OrderByDescending(p => p?.Name ?? "");
                         break;
                     case "cost_asc":
-                        result = result.OrderBy(p => p?.primecost ?? 0);
+                        result = result.OrderBy(p => p?.PrimeCost ?? 0);
                         break;
                     case "cost_desc":
-                        result = result.OrderByDescending(p => p?.primecost ?? 0);
+                        result = result.OrderByDescending(p => p?.PrimeCost ?? 0);
                         break;
                     default:
                         result = result.OrderBy(p => p?.IDProduct ?? 0);

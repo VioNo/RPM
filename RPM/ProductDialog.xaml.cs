@@ -29,15 +29,15 @@ namespace RPM
                 DataContext = product;
 
                 NameTextBox.Text = Product.Name;
-                PrimeCostTextBox.Text = Product.primecost.ToString();
+                PrimeCostTextBox.Text = Product.PrimeCost.ToString();
                 DescriptionTextBox.Text = Product.Description;
 
                 // Устанавливаем выбранные элементы в ComboBox
                 if (Product.IDParty > 0)
                     PartyComboBox.SelectedValue = Product.IDParty;
 
-                if (Product.IDStorage > 0)
-                    StorageComboBox.SelectedValue = Product.IDStorage;
+                if (Product.IDStorageWine > 0)
+                    StorageComboBox.SelectedValue = Product.IDStorageWine;
             }
         }
 
@@ -81,10 +81,10 @@ namespace RPM
                                 }
 
                                 existingProduct.Name = NameTextBox.Text.Trim();
-                                existingProduct.primecost = primeCost;
+                                existingProduct.PrimeCost = primeCost;
                                 existingProduct.Description = DescriptionTextBox.Text.Trim();
                                 existingProduct.IDParty = (int)PartyComboBox.SelectedValue;
-                                existingProduct.IDStorage = (int)StorageComboBox.SelectedValue;
+                                existingProduct.IDStorageWine = (int)StorageComboBox.SelectedValue;
 
                                 var validationErrors = db.GetValidationErrors();
                                 if (validationErrors.Any())
@@ -117,10 +117,10 @@ namespace RPM
                             var product = new Products
                             {
                                 Name = NameTextBox.Text.Trim(),
-                                primecost = primeCost,
+                                PrimeCost = primeCost,
                                 Description = DescriptionTextBox.Text.Trim(),
                                 IDParty = (int)PartyComboBox.SelectedValue,
-                                IDStorage = (int)StorageComboBox.SelectedValue
+                                IDStorageWine = (int)StorageComboBox.SelectedValue
                             };
 
                             db.Products.Add(product);

@@ -1,0 +1,60 @@
+﻿<Page x:Class="RPM.JobTitlesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RPM"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="JobTitlesPage" IsVisibleChanged="Page_IsVisibleChanged">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="PageStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Search and Filter Controls -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="5" 
+                     TextChanged="SearchTextBox_TextChanged" 
+                     ToolTip="Search by Job Title"/>
+            <Button Content="Sort A-Z" Click="SortAscending_Click" Margin="5"
+                    ToolTip="Sort job titles alphabetically"/>
+            <Button Content="Sort Z-A" Click="SortDescending_Click" Margin="5"
+                    ToolTip="Sort job titles in reverse order"/>
+        </StackPanel>
+
+        <!-- Job Titles List -->
+        <ListView Name="ListViewJobTitles" Grid.Row="1" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 HorizontalAlignment="Stretch">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDJobTitle}" Width="auto"/>
+                    <GridViewColumn Header="Job Title" DisplayMemberBinding="{Binding JobTitle}" Width="auto"/>
+                    <GridViewColumn Header="Employee Count" Width="auto">
+                        <GridViewColumn.DisplayMemberBinding>
+                            <Binding Path="Employees.Count" Mode="OneWay"/>
+                        </GridViewColumn.DisplayMemberBinding>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!-- Action Buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5" />
+            <Button Content="Add" Click="AddButton_Click" Margin="5"/>
+            <Button Content="Delete" Click="DeleteButton_Click" Margin="5"/>
+            <Button Content="Update" Click="UpdateButton_Click" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Page>

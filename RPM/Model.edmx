@@ -47,9 +47,10 @@
           <Property Name="EndDate" Type="date" Nullable="false" />
           <Property Name="Temperature" Type="decimal" Precision="5" Scale="2" Nullable="false" />
           <Property Name="LevelSugar" Type="decimal" Precision="5" Scale="2" Nullable="false" />
-          <Property Name="IDParty" Type="int" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
           <Property Name="IDGrowingConditions" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Measure" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="GrapeVarieties">
           <Key>
@@ -96,6 +97,8 @@
           </Key>
           <Property Name="IDParty" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PartyDescription" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Measure" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
@@ -118,10 +121,12 @@
           </Key>
           <Property Name="IDProduct" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDParty" Type="int" Nullable="false" />
-          <Property Name="IDStorage" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="primecost" Type="money" />
+          <Property Name="IDStorageWine" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="PrimeCost" Type="decimal" Precision="10" Scale="2" />
           <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Measure" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Shipments">
           <Key>
@@ -154,10 +159,11 @@
           </Key>
           <Property Name="IDStorageWine" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDFermentation" Type="int" Nullable="false" />
-          <Property Name="IDStorage" Type="int" Nullable="false" />
           <Property Name="IDGrowingConditions" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="ExpirationDate" Type="date" Nullable="false" />
           <Property Name="IDParty" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" />
+          <Property Name="Measure" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -229,7 +235,7 @@
               <PropertyRef Name="IDStorage" />
             </Principal>
             <Dependent Role="Products">
-              <PropertyRef Name="IDStorage" />
+              <PropertyRef Name="IDStorageWine" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -278,6 +284,18 @@
             </Principal>
             <Dependent Role="Shipments">
               <PropertyRef Name="IDParty" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StorageWine_Fermentation">
+          <End Role="Fermentation" Type="Self.Fermentation" Multiplicity="1" />
+          <End Role="StorageWine" Type="Self.StorageWine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fermentation">
+              <PropertyRef Name="IDFermentation" />
+            </Principal>
+            <Dependent Role="StorageWine">
+              <PropertyRef Name="IDFermentation" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -389,18 +407,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Ферментация_Партии">
-          <End Role="Party" Type="Self.Party" Multiplicity="1" />
-          <End Role="Fermentation" Type="Self.Fermentation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Party">
-              <PropertyRef Name="IDParty" />
-            </Principal>
-            <Dependent Role="Fermentation">
-              <PropertyRef Name="IDParty" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Ферментация_УсловияВыращивания">
           <End Role="GrowingConditions" Type="Self.GrowingConditions" Multiplicity="1" />
           <End Role="Fermentation" Type="Self.Fermentation" Multiplicity="*" />
@@ -465,6 +471,10 @@
             <End Role="Party" EntitySet="Party" />
             <End Role="Shipments" EntitySet="Shipments" />
           </AssociationSet>
+          <AssociationSet Name="FK_StorageWine_Fermentation" Association="Self.FK_StorageWine_Fermentation">
+            <End Role="Fermentation" EntitySet="Fermentation" />
+            <End Role="StorageWine" EntitySet="StorageWine" />
+          </AssociationSet>
           <AssociationSet Name="FK_StorageWine_Party" Association="Self.FK_StorageWine_Party">
             <End Role="Party" EntitySet="Party" />
             <End Role="StorageWine" EntitySet="StorageWine" />
@@ -500,10 +510,6 @@
           <AssociationSet Name="FK_УсловияВыращивания_Почва" Association="Self.FK_УсловияВыращивания_Почва">
             <End Role="Soil" EntitySet="Soil" />
             <End Role="GrowingConditions" EntitySet="GrowingConditions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Ферментация_Партии" Association="Self.FK_Ферментация_Партии">
-            <End Role="Party" EntitySet="Party" />
-            <End Role="Fermentation" EntitySet="Fermentation" />
           </AssociationSet>
           <AssociationSet Name="FK_Ферментация_УсловияВыращивания" Association="Self.FK_Ферментация_УсловияВыращивания">
             <End Role="GrowingConditions" EntitySet="GrowingConditions" />
@@ -561,11 +567,12 @@
           <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Temperature" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
           <Property Name="LevelSugar" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
-          <Property Name="IDParty" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IDGrowingConditions" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Measure" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Yield" Relationship="Self.FK__Ферментац__IDУро__412EB0B6" FromRole="Fermentation" ToRole="Yield" />
-          <NavigationProperty Name="Party" Relationship="Self.FK_Ферментация_Партии" FromRole="Fermentation" ToRole="Party" />
+          <NavigationProperty Name="StorageWine" Relationship="Self.FK_StorageWine_Fermentation" FromRole="Fermentation" ToRole="StorageWine" />
           <NavigationProperty Name="GrowingConditions" Relationship="Self.FK_Ферментация_УсловияВыращивания" FromRole="Fermentation" ToRole="GrowingConditions" />
         </EntityType>
         <EntityType Name="GrapeVarieties">
@@ -626,7 +633,8 @@
           </Key>
           <Property Name="IDParty" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PartyDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Fermentation" Relationship="Self.FK_Ферментация_Партии" FromRole="Party" ToRole="Fermentation" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Measure" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Shipments" Relationship="Self.FK_Shipments_Party" FromRole="Party" ToRole="Shipments" />
           <NavigationProperty Name="StorageWine" Relationship="Self.FK_StorageWine_Party" FromRole="Party" ToRole="StorageWine" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Товар_Партии" FromRole="Party" ToRole="Products" />
@@ -654,10 +662,12 @@
           </Key>
           <Property Name="IDProduct" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDParty" Type="Int32" Nullable="false" />
-          <Property Name="IDStorage" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="primecost" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IDStorageWine" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PrimeCost" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Measure" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Orders" Relationship="Self.FK__Заказы__IDТовара__534D60F1" FromRole="Products" ToRole="Orders" />
           <NavigationProperty Name="Party" Relationship="Self.FK_Товар_Партии" FromRole="Products" ToRole="Party" />
           <NavigationProperty Name="Storage" Relationship="Self.FK__Товар__IDСклада__4F7CD00D" FromRole="Products" ToRole="Storage" />
@@ -698,10 +708,12 @@
           </Key>
           <Property Name="IDStorageWine" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDFermentation" Type="Int32" Nullable="false" />
-          <Property Name="IDStorage" Type="Int32" Nullable="false" />
           <Property Name="IDGrowingConditions" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IDParty" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="Measure" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Fermentation" Relationship="Self.FK_StorageWine_Fermentation" FromRole="StorageWine" ToRole="Fermentation" />
           <NavigationProperty Name="Party" Relationship="Self.FK_StorageWine_Party" FromRole="StorageWine" ToRole="Party" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -793,15 +805,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Ферментация_Партии">
-          <End Role="Party" Type="Self.Party" Multiplicity="1" />
-          <End Role="Fermentation" Type="Self.Fermentation" Multiplicity="*" />
+        <Association Name="FK_StorageWine_Fermentation">
+          <End Role="Fermentation" Type="Self.Fermentation" Multiplicity="1" />
+          <End Role="StorageWine" Type="Self.StorageWine" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Party">
-              <PropertyRef Name="IDParty" />
+            <Principal Role="Fermentation">
+              <PropertyRef Name="IDFermentation" />
             </Principal>
-            <Dependent Role="Fermentation">
-              <PropertyRef Name="IDParty" />
+            <Dependent Role="StorageWine">
+              <PropertyRef Name="IDFermentation" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -945,7 +957,7 @@
               <PropertyRef Name="IDStorage" />
             </Principal>
             <Dependent Role="Products">
-              <PropertyRef Name="IDStorage" />
+              <PropertyRef Name="IDStorageWine" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1001,9 +1013,9 @@
             <End Role="Yield" EntitySet="Yield" />
             <End Role="Fermentation" EntitySet="Fermentation" />
           </AssociationSet>
-          <AssociationSet Name="FK_Ферментация_Партии" Association="Self.FK_Ферментация_Партии">
-            <End Role="Party" EntitySet="Party" />
+          <AssociationSet Name="FK_StorageWine_Fermentation" Association="Self.FK_StorageWine_Fermentation">
             <End Role="Fermentation" EntitySet="Fermentation" />
+            <End Role="StorageWine" EntitySet="StorageWine" />
           </AssociationSet>
           <AssociationSet Name="FK_Ферментация_УсловияВыращивания" Association="Self.FK_Ферментация_УсловияВыращивания">
             <End Role="GrowingConditions" EntitySet="GrowingConditions" />
@@ -1108,9 +1120,10 @@
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="Temperature" ColumnName="Temperature" />
                 <ScalarProperty Name="LevelSugar" ColumnName="LevelSugar" />
-                <ScalarProperty Name="IDParty" ColumnName="IDParty" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="IDGrowingConditions" ColumnName="IDGrowingConditions" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Measure" ColumnName="Measure" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1162,6 +1175,8 @@
               <MappingFragment StoreEntitySet="Party">
                 <ScalarProperty Name="IDParty" ColumnName="IDParty" />
                 <ScalarProperty Name="PartyDescription" ColumnName="PartyDescription" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Measure" ColumnName="Measure" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1187,10 +1202,12 @@
               <MappingFragment StoreEntitySet="Products">
                 <ScalarProperty Name="IDProduct" ColumnName="IDProduct" />
                 <ScalarProperty Name="IDParty" ColumnName="IDParty" />
-                <ScalarProperty Name="IDStorage" ColumnName="IDStorage" />
+                <ScalarProperty Name="IDStorageWine" ColumnName="IDStorageWine" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="primecost" ColumnName="primecost" />
+                <ScalarProperty Name="PrimeCost" ColumnName="PrimeCost" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Measure" ColumnName="Measure" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1227,10 +1244,11 @@
               <MappingFragment StoreEntitySet="StorageWine">
                 <ScalarProperty Name="IDStorageWine" ColumnName="IDStorageWine" />
                 <ScalarProperty Name="IDFermentation" ColumnName="IDFermentation" />
-                <ScalarProperty Name="IDStorage" ColumnName="IDStorage" />
                 <ScalarProperty Name="IDGrowingConditions" ColumnName="IDGrowingConditions" />
                 <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
                 <ScalarProperty Name="IDParty" ColumnName="IDParty" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Measure" ColumnName="Measure" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

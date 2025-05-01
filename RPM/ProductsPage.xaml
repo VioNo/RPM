@@ -66,21 +66,17 @@
                     <GridViewColumn Header="Себестоимость" DisplayMemberBinding="{Binding primecost}" Width="auto"/>
                     <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}" Width="auto"/>
                     <GridViewColumn Header="ID партии" DisplayMemberBinding="{Binding IDParty}" Width="auto"/>
-                    <GridViewColumn Header="ID склада" DisplayMemberBinding="{Binding IDStorage}" Width="auto"/>
+                    <GridViewColumn Header="ID склада" DisplayMemberBinding="{Binding IDStorageWine}" Width="auto"/>
                 </GridView>
             </ListView.View>
         </ListView>
 
         <!-- Buttons Panel -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="Back" Content="Назад" Click="BackButton_Click" Margin="5"
-                    ToolTip="Вернуться на предыдущую страницу"/>
-            <Button Content="Добавить" Click="AddButton_Click" Margin="5"
-                    ToolTip="Добавить новый продукт"/>
-            <Button Content="Удалить" Click="DeleteButton_Click" Margin="5"
-                    ToolTip="Удалить выбранный продукт"/>
-            <Button Content="Изменить" Click="UpdateButton_Click" Margin="5"
-                    ToolTip="Редактировать выбранный продукт"/>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5" />
+            <Button Content="Add" Click="AddButton_Click" Margin="5"/>
+            <Button Content="Delete" Click="DeleteButton_Click" Margin="5"/>
+            <Button Content="Update" Click="UpdateButton_Click" Margin="5"/>
         </StackPanel>
     </Grid>
 </Page>

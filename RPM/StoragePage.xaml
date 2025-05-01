@@ -53,11 +53,11 @@
         </DataGrid>
 
         <!-- Action Buttons -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="Back" Content="Назад" Click="BackButton_Click" Margin="5" />
-            <Button Content="Добавить" Click="AddButton_Click" Margin="5"/>
-            <Button Content="Удалить" Click="DeleteButton_Click" Margin="5"/>
-            <Button Content="Обновить" Click="UpdateButton_Click" Margin="5"/>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5" />
+            <Button Content="Add" Click="AddButton_Click" Margin="5"/>
+            <Button Content="Delete" Click="DeleteButton_Click" Margin="5"/>
+            <Button Content="Update" Click="UpdateButton_Click" Margin="5"/>
         </StackPanel>
     </Grid>
 </Page>

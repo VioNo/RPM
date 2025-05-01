@@ -34,7 +34,12 @@ namespace RPM
             PhoneTextBlock.Text = _client.Phone;
             EmailTextBlock.Text = _client.Email;
             }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new MainPage());
         }
+    }
     }
 
 

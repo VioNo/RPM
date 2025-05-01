@@ -19,7 +19,15 @@ namespace RPM
             : base("name=DistilleryRassvetBase")
         {
         }
-    
+        private static DistilleryRassvetBase _context;
+        public static DistilleryRassvetBase GetContext()
+        {
+            if (_context == null)
+                _context = new DistilleryRassvetBase();
+            return _context;
+        }
+
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

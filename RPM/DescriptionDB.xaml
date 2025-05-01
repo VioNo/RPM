@@ -21,18 +21,39 @@
             <ColumnDefinition Width="250"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="90"/>
-            <RowDefinition Height="90"/>
-            <RowDefinition Height="90"/>
-            <RowDefinition Height="90"/>
-            <RowDefinition Height="90"/>
+            
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <Frame x:Name="DescriptionDBPage" Grid.ColumnSpan="3" Grid.RowSpan="5" />
-        <Button x:Name="ProductsButton" Grid.Row="1" Grid.Column="0" Content="Products" Click="ProductsButton_Click" />
-        <Button x:Name="EmployeesButton"  Grid.Row="1" Grid.Column="1" Content="Employees" Click="EmployeesButton_Click" />
-        <Button x:Name="GrapeVarietiesButton" Grid.Row="1" Grid.Column="2" Content="GrapeVarieties" Click="GrapeVarietiesButton_Click"/>
-        <Button x:Name="StorageButton" Grid.Row="2" Grid.Column="0" Content="Storage" Click="StorageButton_Click"/>
-        <Button x:Name="ClientsButton" Grid.Row="2" Grid.Column="2" Content="Clients" Click="ClientsButton_Click"/>
-        <Button x:Name="BackButton" Grid.Row="3" Grid.Column="1" Content="Back" Click="BackButton_Click"/>
+        <Button x:Name="ProductsButton" Content="Products" Click="ProductsButton_Click" />
+        <Button x:Name="EmployeesButton"  Grid.Row="1" Content="Employees" Click="EmployeesButton_Click" />
+        <Button x:Name="GrapeVarietiesButton" Grid.Row="2" Content="GrapeVarieties" Click="GrapeVarietiesButton_Click"/>
+        <Button x:Name="StorageButton" Grid.Row="3" Content="Storage" Click="StorageButton_Click"/>
+        <Button x:Name="ClientsButton" Grid.Row="4" Grid.Column="0" Content="Clients" Click="ClientsButton_Click"/>
+        <Button x:Name="ClimateButton" Grid.Row="5" Grid.Column="0" Content="Climate" Click="ClimateButton_Click"/>
+
+        <Button x:Name="FermentationButton" Grid.Row="0" Grid.Column="1" Content="Fermentation" Click="FermentationButton_Click"/>
+        <Button x:Name="GrowingConditionsButton" Grid.Row="1" Grid.Column="1" Content="GrowingConditions" Click="GrowingConditionsButton_Click"/>
+        <Button x:Name="JobTitlesButton" Grid.Row="2" Grid.Column="1" Content="JobTitles" Click="JobTitlesButton_Click"/>
+        <Button x:Name="OrdersButton" Grid.Row="3" Grid.Column="1" Content="Orders" Click="OrdersButton_Click"/>
+        <Button x:Name="PartyButton" Grid.Row="4" Grid.Column="1" Content="Party" Click="PartyButton_Click"/>
+        <Button x:Name="PaymentButton" Grid.Row="5" Grid.Column="1" Content="Payment" Click="PaymentButton_Click"/>
+        
+        <Button x:Name="ShipmentsButton" Grid.Row="0" Grid.Column="2" Content="Shipments" Click="ShipmentsButton_Click"/>
+        <Button x:Name="SoilButton" Grid.Row="1" Grid.Column="2" Content="Soil" Click="SoilButton_Click"/>
+        <Button x:Name="StorageWineButton" Grid.Row="2" Grid.Column="2" Content="StorageWine" Click="StorageWineButton_Click"/>
+        <Button x:Name="WaterButton" Grid.Row="3" Grid.Column="2" Content="Water" Click="WaterButton_Click"/>
+        <Button x:Name="YieldButton" Grid.Row="4" Grid.Column="2" Content="Yield" Click="YieldButton_Click"/>
+        <Button x:Name="PaymentsOrderButton" Grid.Row="5" Grid.Column="2" Content="PaymentsOrder" Click="PaymentsOrderButton_Click"/>
+        
+        <Button x:Name="BackButton" Grid.Row="7" Grid.Column="1" Content="Back" Click="BackButton_Click"/>
     </Grid>
 </Page>

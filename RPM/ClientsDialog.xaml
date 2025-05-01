@@ -36,5 +36,6 @@
             </StackPanel>
         </StackPanel>
         <Button Content="Save" Click="SaveButton_Click" Width="100" Margin="0,140,0,0"/>
+        <Button Content="Back" Click="BackButton_Click" Width="100" Margin="0,240,0,0"/>
     </Grid>
 </Page>

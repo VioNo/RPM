@@ -1,0 +1,72 @@
+﻿<Page x:Class="RPM.OrdersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RPM"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="OrdersPage" IsVisibleChanged="Page_IsVisibleChanged">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="PageStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Search and Filter Controls -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+            <DatePicker x:Name="DateFromFilter" Width="150" Margin="5"
+                       SelectedDateChanged="DateFilter_Changed"
+                       ToolTip="Filter from date"/>
+            <DatePicker x:Name="DateToFilter" Width="150" Margin="5"
+                       SelectedDateChanged="DateFilter_Changed"
+                       ToolTip="Filter to date"/>
+            <TextBox x:Name="ClientSearchTextBox" Width="200" Margin="5"
+                    TextChanged="SearchTextBox_TextChanged"
+                    ToolTip="Search by client name"/>
+            <Button Content="Sort by Date" Click="SortByDate_Click" Margin="5"
+                    ToolTip="Sort by order date"/>
+            <Button Content="Sort by Sum" Click="SortBySum_Click" Margin="5"
+                    ToolTip="Sort by order total"/>
+        </StackPanel>
+
+        <!-- Orders List -->
+        <ListView Name="ListViewOrders" Grid.Row="1" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 HorizontalAlignment="Stretch">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDOrders}" Width="auto"/>
+                    <GridViewColumn Header="Client" Width="auto">
+                        <GridViewColumn.DisplayMemberBinding>
+                            <Binding Path="Clients.Name" StringFormat="{}{0} {1}" 
+                                     ConverterParameter="Surname"/>
+                        </GridViewColumn.DisplayMemberBinding>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Product" DisplayMemberBinding="{Binding Products.Name}" Width="auto"/>
+                    <GridViewColumn Header="Employee" DisplayMemberBinding="{Binding Employees.Name}" Width="auto"/>
+                    <GridViewColumn Header="Count" DisplayMemberBinding="{Binding Count}" Width="auto"/>
+                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding DateOrder, StringFormat={}{0:dd.MM.yyyy}}" Width="auto"/>
+                    <GridViewColumn Header="Sum" DisplayMemberBinding="{Binding Sum, StringFormat={}{0:C}}" Width="auto"/>
+                    <GridViewColumn Header="Payment" DisplayMemberBinding="{Binding Payment.Method}" Width="auto"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!-- Action Buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5" />
+            <Button Content="Add" Click="AddButton_Click" Margin="5"/>
+            <Button Content="Delete" Click="DeleteButton_Click" Margin="5"/>
+            <Button Content="Update" Click="UpdateButton_Click" Margin="5"/>
+        </StackPanel>
+    </Grid>
+</Page>

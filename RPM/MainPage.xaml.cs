@@ -159,8 +159,7 @@ namespace RPM
         }
         private void DBButton_Click(object sender, RoutedEventArgs e)
         {
-            DescriptionDB descriptionDB = new DescriptionDB();
-            NavigationService.Navigate(descriptionDB);
+            NavigationService.Navigate(new DescriptionDB());
         }
     }
 }

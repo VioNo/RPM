@@ -16,7 +16,7 @@
     </Page.Resources>
     
     <Grid Margin="10">
-        <StackPanel Margin="20">
+        <StackPanel Orientation="Vertical" Height="400" VerticalAlignment="Top" Width="600">
             <TextBlock Text="ID:" FontWeight="Bold" />
             <TextBlock Name="IdTextBlock" Margin="5" />
             <TextBlock Text="Login:" FontWeight="Bold" />
@@ -26,6 +26,7 @@
             <TextBlock Text="Email:" FontWeight="Bold" />
             <TextBlock Name="EmailTextBlock" Margin="5" />
         </StackPanel>
+        <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5" />
         <Frame x:Name="userInfoPage" Grid.ColumnSpan="5"  Grid.RowSpan="7"/>
         
     </Grid>

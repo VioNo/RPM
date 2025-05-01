@@ -54,5 +54,70 @@ namespace RPM
         {
             NavigationService.Navigate(new MainPage());
         }
+
+        private void ClimateButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ClimatePage());
+        }
+
+        private void FermentationButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new FermentationPage());
+        }
+
+        private void GrowingConditionsButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new GrowingConditionsPage());
+        }
+
+        private void JobTitlesButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new JobTitlesPage());
+        }
+
+        private void OrdersButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new OrdersPage());
+        }
+
+        private void PartyButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new PartyPage());
+        }
+
+        private void PaymentButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new PaymentPage());
+        }
+
+        private void ShipmentsButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ShipmentsPage());
+        }
+
+        private void SoilButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new SoilPage());
+        }
+
+        private void StorageWineButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new StorageWinePage());
+        }
+
+        private void WaterButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new WaterPage());
+        }
+
+        private void YieldButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new YieldPage());
+        }
+
+        private void PaymentsOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new PaymentPage());
+        }
     }
 }
