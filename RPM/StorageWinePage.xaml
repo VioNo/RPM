@@ -6,9 +6,55 @@
       xmlns:local="clr-namespace:RPM"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="StorageWinePage">
-
+      Title="StorageWinePage" IsVisibleChanged="Page_IsVisibleChanged">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="PageStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Search and Filter Controls -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="5" 
+                     TextChanged="SearchTextBox_TextChanged" 
+                     ToolTip="Search by Description"/>
+            <DatePicker x:Name="ExpirationDateFilter" Width="150" Margin="5"
+                       SelectedDateChanged="DateFilter_Changed"
+                       ToolTip="Filter by Expiration Date"/>
+            <Button Content="Sort by Count" Click="SortByCount_Click" Margin="5"
+                    ToolTip="Sort by wine count"/>
+        </StackPanel>
+
+        <!-- StorageWine List -->
+        <ListView Name="ListViewStorageWine" Grid.Row="1" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 HorizontalAlignment="Stretch">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDStorageWine}" Width="auto"/>
+                    <GridViewColumn Header="Expiration Date" DisplayMemberBinding="{Binding ExpirationDate, StringFormat={}{0:dd.MM.yyyy}}" Width="auto"/>
+                    <GridViewColumn Header="Fermentation" DisplayMemberBinding="{Binding Fermentation.Description}" Width="auto"/>
+                    <GridViewColumn Header="Party" DisplayMemberBinding="{Binding Party.PartyDescription}" Width="auto"/>
+                    <GridViewColumn Header="Count" DisplayMemberBinding="{Binding Count}" Width="auto"/>
+                    <GridViewColumn Header="Measure" DisplayMemberBinding="{Binding Measure}" Width="auto"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!-- Action Buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5" />
+            <Button Content="Add" Click="AddButton_Click" Margin="5"/>
+            <Button Content="Delete" Click="DeleteButton_Click" Margin="5"/>
+            <Button Content="Update" Click="UpdateButton_Click" Margin="5"/>
+        </StackPanel>
     </Grid>
 </Page>

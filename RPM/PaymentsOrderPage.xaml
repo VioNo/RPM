@@ -6,9 +6,53 @@
       xmlns:local="clr-namespace:RPM"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PaymentsOrderPage">
-
+       Title="PaymentsOrderPage" IsVisibleChanged="Page_IsVisibleChanged">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="PageStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Search and Filter Controls -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="5" 
+                     TextChanged="SearchTextBox_TextChanged" 
+                     ToolTip="Search by Order ID"/>
+            <DatePicker x:Name="StartDateFilter" Width="150" Margin="5"
+                       SelectedDateChanged="DateFilter_Changed"
+                       ToolTip="Filter by Start Date"/>
+            <Button Content="Sort by Sum" Click="SortBySum_Click" Margin="5"
+                    ToolTip="Sort by payment amount"/>
+        </StackPanel>
+
+        <!-- PaymentsOrder List -->
+        <ListView Name="ListViewPaymentsOrder" Grid.Row="1" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 HorizontalAlignment="Stretch">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Order ID" DisplayMemberBinding="{Binding IDOrders}" Width="auto"/>
+                    <GridViewColumn Header="Sum" DisplayMemberBinding="{Binding Sum, StringFormat={}{0:C}}" Width="auto"/>
+                    <GridViewColumn Header="Payment Date" DisplayMemberBinding="{Binding DatePayments, StringFormat={}{0:dd.MM.yyyy}}" Width="auto"/>
+                    <GridViewColumn Header="Payment Method" DisplayMemberBinding="{Binding Orders.Payment.PaymentMethod}" Width="auto"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!-- Action Buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5" />
+            <Button Content="Add" Click="AddButton_Click" Margin="5"/>
+            <Button Content="Delete" Click="DeleteButton_Click" Margin="5"/>
+            <Button Content="Update" Click="UpdateButton_Click" Margin="5"/>
+        </StackPanel>
     </Grid>
 </Page>

@@ -6,9 +6,57 @@
       xmlns:local="clr-namespace:RPM"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ShipmentsPage">
-
+     Title="ShipmentsPage" IsVisibleChanged="Page_IsVisibleChanged">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="PageStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Search and Filter Controls -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
+            <TextBox x:Name="SearchTextBox" Width="200" Margin="5" 
+                     TextChanged="SearchTextBox_TextChanged" 
+                     ToolTip="Search by Description"/>
+            <DatePicker x:Name="StartDateFilter" Width="150" Margin="5"
+                       SelectedDateChanged="DateFilter_Changed"
+                       ToolTip="Filter by Start Date"/>
+            <DatePicker x:Name="EndDateFilter" Width="150" Margin="5"
+                       SelectedDateChanged="DateFilter_Changed"
+                       ToolTip="Filter by End Date"/>
+            <Button Content="Sort by Amount" Click="SortByAmount_Click" Margin="5"
+                    ToolTip="Sort by shipment amount"/>
+        </StackPanel>
+
+        <!-- Shipments List -->
+        <ListView Name="ListViewShipments" Grid.Row="1" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                 HorizontalAlignment="Stretch">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDShipment}" Width="auto"/>
+                    <GridViewColumn Header="Date" DisplayMemberBinding="{Binding DateShipment, StringFormat={}{0:dd.MM.yyyy}}" Width="auto"/>
+                    <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Amount}" Width="auto"/>
+                    <GridViewColumn Header="Party" DisplayMemberBinding="{Binding Party.PartyDescription}" Width="auto"/>
+                    <GridViewColumn Header="Storage" DisplayMemberBinding="{Binding Storage.Address}" Width="auto"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!-- Action Buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5" />
+            <Button Content="Add" Click="AddButton_Click" Margin="5"/>
+            <Button Content="Delete" Click="DeleteButton_Click" Margin="5"/>
+            <Button Content="Update" Click="UpdateButton_Click" Margin="5"/>
+        </StackPanel>
     </Grid>
 </Page>

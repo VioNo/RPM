@@ -15,7 +15,11 @@
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
-        <StackPanel Margin="0,10,0,10" Orientation="Horizontal">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="225"/>
+            <RowDefinition Height="225"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="0,10,0,10" Orientation="Horizontal" Grid.RowSpan="2">
             <StackPanel>
                 <TextBlock Text="Grape Variety:" Margin="0,0,0,5" Width="110"/>
                 <TextBlock Text="Soil:" Margin="0,0,0,5"/>
@@ -28,10 +32,10 @@
                 <ComboBox x:Name="SoilComboBox" DisplayMemberPath="IDSoil" SelectedValuePath="IDSoil" Margin="0,0,0,5"/>
                 <ComboBox x:Name="WaterComboBox" DisplayMemberPath="IDWater" SelectedValuePath="IDWater" Margin="0,0,0,5"/>
                 <ComboBox x:Name="ClimateComboBox" DisplayMemberPath="IDClimate" SelectedValuePath="IDClimate" Margin="0,0,0,5"/>
-                <TextBox x:Name="DescriptionTextBox" Margin="0,0,0,5" Height="100" AcceptsReturn="True" TextWrapping="Wrap"/>
+                <TextBox x:Name="DescriptionTextBox" Margin="0,0,0,5" AcceptsReturn="True" TextWrapping="Wrap"/>
             </StackPanel>
         </StackPanel>
-        <Button Content="Save" Click="SaveButton_Click" Width="100" Margin="0,140,0,0"/>
-        <Button Content="Back" Click="BackButton_Click" Width="100" Margin="0,240,0,0"/>
+        <Button Content="Save" Click="SaveButton_Click" Grid.Row="1" VerticalAlignment="Top"/>
+        <Button Content="Back" Click="BackButton_Click" Margin="0,60,0,0" Grid.Row="1" VerticalAlignment="Top"/>
     </Grid>
 </Page>

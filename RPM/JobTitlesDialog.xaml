@@ -20,8 +20,8 @@
                 <TextBlock Text="Job Title:" Width="100" VerticalAlignment="Center"/>
                 <TextBox x:Name="JobTitleTextBox" Width="200"/>
             </StackPanel>
-            <Button Content="Save" Click="SaveButton_Click" Width="100" Margin="0,20,0,10"/>
-            <Button Content="Back" Click="BackButton_Click" Width="100"/>
+            <Button Content="Save" Click="SaveButton_Click" Margin="0,20,0,10"/>
+            <Button Content="Back" Click="BackButton_Click"/>
         </StackPanel>
     </Grid>
 </Page>

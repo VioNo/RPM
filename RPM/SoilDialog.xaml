@@ -7,8 +7,28 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SoilDialog">
-
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="MainStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="250"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="0,10,0,10" Orientation="Horizontal" Grid.Row="1">
+            <StackPanel>
+                <TextBlock Text="Description:" Margin="0,0,0,10"/>
+            </StackPanel>
+            <StackPanel>
+                <TextBox x:Name="DescriptionTextBox" Width="300" Margin="0,0,0,5"/>
+            </StackPanel>
+        </StackPanel>
+        <Button Content="Save" Click="SaveButton_Click" Margin="0,10,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <Button Content="Back" Click="BackButton_Click" Margin="0,50,0,0" Grid.Row="2" VerticalAlignment="Top"/>
     </Grid>
 </Page>

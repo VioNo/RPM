@@ -81,7 +81,6 @@ namespace RPM
             return match.Success ? int.Parse(match.Value) : int.MaxValue;
         }
 
-        // ... (keep all other existing methods unchanged)
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             ClientsDialog clientsDialog = new ClientsDialog(null);

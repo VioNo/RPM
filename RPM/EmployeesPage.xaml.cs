@@ -60,15 +60,6 @@ namespace RPM
                     emp.JobTitles != null && emp.JobTitles.IDJobTitle == selectedJob.IDJobTitle);
             }
 
-            //// Применение фильтра по дате найма
-            //if (HireDateFilterPicker.SelectedDate.HasValue)
-            //{
-            //    DateTime selectedDate = HireDateFilterPicker.SelectedDate.Value.Date;
-            //    filteredEmployees = filteredEmployees.Where(emp =>
-            //        emp.DateStartedWork.HasValue &&
-            //        emp.DateStartedWork.Value.Date == selectedDate);
-            //}
-
             ListViewEmployees.ItemsSource = filteredEmployees.ToList();
         }
 
