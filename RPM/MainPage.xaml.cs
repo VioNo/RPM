@@ -156,7 +156,7 @@ namespace RPM
                     case "Password":
                         return db.Clients.AsNoTracking().Any(u => u.Password == value);
                     default:
-                        throw new ArgumentException("Invalid column name");
+                        throw new ArgumentException("Недопустимое имя строки (Invalid column name)");
                 }
             }
         }

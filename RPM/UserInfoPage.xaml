@@ -26,7 +26,7 @@
             <TextBlock Text="Email:" FontWeight="Bold" />
             <TextBlock Name="EmailTextBlock" Margin="5" />
         </StackPanel>
-        <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5" />
+        <Button x:Name="Back" Content="Вернуться (Back)" Click="BackButton_Click" Margin="5" />
         <Frame x:Name="userInfoPage" Grid.ColumnSpan="5"  Grid.RowSpan="7"/>
         
     </Grid>

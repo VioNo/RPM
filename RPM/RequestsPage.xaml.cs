@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace RPM
 {
-    /// <summary>
-    /// Логика взаимодействия для RequestsPage.xaml
-    /// </summary>
     public partial class RequestsPage : Page
     {
         public RequestsPage()
@@ -40,7 +37,8 @@ namespace RPM
         private string _statusMessage;
         private bool _isBusy;
         private int _selectedYear = DateTime.Now.Year;
-        private int _selectedMonth = DateTime.Now.Month;
+        private int _startMonth = 1;
+        private int _endMonth = 12;
 
         public DataView QueryResults
         {
@@ -82,25 +80,35 @@ namespace RPM
             }
         }
 
-        public int SelectedMonth
+        public int StartMonth
         {
-            get => _selectedMonth;
+            get => _startMonth;
             set
             {
-                _selectedMonth = value;
-                OnPropertyChanged(nameof(SelectedMonth));
+                _startMonth = value;
+                OnPropertyChanged(nameof(StartMonth));
+            }
+        }
+
+        public int EndMonth
+        {
+            get => _endMonth;
+            set
+            {
+                _endMonth = value;
+                OnPropertyChanged(nameof(EndMonth));
             }
         }
 
         public ICommand YieldCommand { get; }
-        public ICommand FermentationCommand { get; }
+        public ICommand OrdersReportCommand { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public RequestsViewModel()
         {
             YieldCommand = new RelayCommand(ExecuteYield);
-            FermentationCommand = new RelayCommand(ExecuteFermentation);
+            OrdersReportCommand = new RelayCommand(ExecuteOrdersReport);
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -113,14 +121,16 @@ namespace RPM
             if (!ValidateYearMonth()) return;
 
             IsBusy = true;
-            StatusMessage = $"Загрузка данных об урожае за {SelectedMonth}.{SelectedYear}...";
+            StatusMessage = $"Загрузка данных об урожае за {StartMonth}-{EndMonth}.{SelectedYear}...";
 
             try
             {
                 using (var db = new DistilleryRassvetBase())
                 {
                     var query = db.Yield
-                        .Where(y => y.DateYield.Month == SelectedMonth && y.DateYield.Year == SelectedYear)
+                        .Where(y => y.DateYield.Year == SelectedYear &&
+                                   y.DateYield.Month >= StartMonth &&
+                                   y.DateYield.Month <= EndMonth)
                         .Join(db.GrapeVarieties,
                             y => y.IDGrapeVarieties,
                             gv => gv.IDGrapeVarieties,
@@ -153,44 +163,41 @@ namespace RPM
             }
         }
 
-        private void ExecuteFermentation()
+        private void ExecuteOrdersReport()
         {
-            if (!ValidateYearMonth()) return;
+            if (!ValidateYearMonthRange()) return;
 
             IsBusy = true;
-            StatusMessage = $"Загрузка данных о ферментации за {SelectedMonth}.{SelectedYear}...";
+            StatusMessage = $"Загрузка данных о заказах за период {StartMonth}-{EndMonth}.{SelectedYear}...";
 
             try
             {
                 using (var db = new DistilleryRassvetBase())
                 {
-                    // Преобразуем IDGrowingConditions в int для join
-                    var finalQuery = db.Fermentation
-                        .Where(f => f.EndDate.Month == SelectedMonth && f.EndDate.Year == SelectedYear)
-                        .Join(db.StorageWine,
-                            f => f.IDFermentation,
-                            sw => sw.IDFermentation,
-                            (f, sw) => new { Fermentation = f, StorageWine = sw })
+                    var query = db.Orders
+                        .Where(o => o.DateOrder.Year == SelectedYear &&
+                                   o.DateOrder.Month >= StartMonth &&
+                                   o.DateOrder.Month <= EndMonth)
+                        .Join(db.Clients,
+                            o => o.IDClient,
+                            c => c.IDClient,
+                            (o, c) => new { o, c })
                         .Join(db.Products,
-                            temp => temp.StorageWine.IDParty,
-                            p => p.IDParty,
-                            (temp, p) => new { temp.Fermentation, temp.StorageWine, Product = p })
-                        .Join(db.GrowingConditions,
-                            temp => Convert.ToInt64(temp.StorageWine.IDGrowingConditions), // Преобразуем string в int
-                            gc => gc.IDGrowingConditions,
-                            (temp, gc) => new
+                            oc => oc.o.IDProduct,
+                            p => p.IDProduct,
+                            (oc, p) => new
                             {
-                                Название = temp.Product.Name,
-                                Дата_начала = temp.Fermentation.StartDate,
-                                Дата_завершения = temp.Fermentation.EndDate,
-                                Условия = gc.Description,
-                                Дата_розлива = temp.StorageWine.ExpirationDate
+                                Название = p.Name,
+                                Количество = oc.o.Count,
+                                Дата = oc.o.DateOrder,
+                                Клиент = oc.c.Name + " " + oc.c.Surname,
+                                Сумма = oc.o.Sum
                             })
-                        .OrderByDescending(x => x.Дата_завершения)
+                        .OrderByDescending(x => x.Дата)
                         .ToList();
 
-                    QueryResults = ConvertToDataView(finalQuery);
-                    StatusMessage = $"Найдено {finalQuery.Count} записей о ферментации";
+                    QueryResults = ConvertToDataView(query);
+                    StatusMessage = $"Найдено {query.Count} заказов за период {StartMonth}-{EndMonth}.{SelectedYear}";
                 }
             }
             catch (Exception ex)
@@ -212,9 +219,37 @@ namespace RPM
                 return false;
             }
 
-            if (SelectedMonth < 1 || SelectedMonth > 12)
+            return ValidateMonthRange();
+        }
+
+        private bool ValidateYearMonthRange()
+        {
+            if (SelectedYear < 2000 || SelectedYear > DateTime.Now.Year + 5)
             {
-                MessageBox.Show("Укажите корректный месяц (1-12)");
+                MessageBox.Show("Укажите корректный год (2000-" + (DateTime.Now.Year + 5) + ")");
+                return false;
+            }
+
+            return ValidateMonthRange();
+        }
+
+        private bool ValidateMonthRange()
+        {
+            if (StartMonth < 1 || StartMonth > 12)
+            {
+                MessageBox.Show("Укажите корректный начальный месяц (1-12)");
+                return false;
+            }
+
+            if (EndMonth < 1 || EndMonth > 12)
+            {
+                MessageBox.Show("Укажите корректный конечный месяц (1-12)");
+                return false;
+            }
+
+            if (StartMonth > EndMonth)
+            {
+                MessageBox.Show("Начальный месяц не может быть больше конечного");
                 return false;
             }
 
@@ -263,8 +298,5 @@ namespace RPM
         public void Execute(object parameter) => _execute();
 
         public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-
-        
     }
-
 }

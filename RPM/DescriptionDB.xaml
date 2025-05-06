@@ -10,18 +10,18 @@
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="PageStyle.xaml"/>
+                <ResourceDictionary Source="MainStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/>
-            <ColumnDefinition Width="300"/>
-            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="260"/>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition Width="260"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            
+
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
@@ -33,28 +33,28 @@
             <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="ProductsButton" Content="Products" Click="ProductsButton_Click" />
-        <Button x:Name="EmployeesButton"  Grid.Row="1" Content="Employees" Click="EmployeesButton_Click" />
-        <Button x:Name="GrapeVarietiesButton" Grid.Row="2" Content="GrapeVarieties" Click="GrapeVarietiesButton_Click"/>
-        <Button x:Name="StorageButton" Grid.Row="3" Content="Storage" Click="StorageButton_Click"/>
-        <Button x:Name="ClientsButton" Grid.Row="4" Grid.Column="0" Content="Clients" Click="ClientsButton_Click"/>
-        <Button x:Name="ClimateButton" Grid.Row="5" Grid.Column="0" Content="Climate" Click="ClimateButton_Click"/>
+        <Button x:Name="ProductsButton" Content="Продукты (Products)" Click="ProductsButton_Click" Height="30" Width="240" />
+        <Button x:Name="EmployeesButton" Grid.Row="1" Content="Сотрудники (Employees)" Click="EmployeesButton_Click" Height="30" Width="240"/>
+        <Button x:Name="GrapeVarietiesButton" Grid.Row="2" Content="Сорта винограда" Click="GrapeVarietiesButton_Click" Height="30" Width="240"/>
+        <Button x:Name="StorageButton" Grid.Row="3" Content="Хранение (Storage)" Click="StorageButton_Click" Height="30" Width="240"/>
+        <Button x:Name="ClientsButton" Grid.Row="4" Content="Клиенты (Clients)" Click="ClientsButton_Click" Height="30" Width="240"/>
+        <Button x:Name="ClimateButton" Grid.Row="5" Content="Климат (Climate)" Click="ClimateButton_Click" Height="30" Width="240"/>
 
-        <Button x:Name="FermentationButton" Grid.Row="0" Grid.Column="1" Content="Fermentation" Click="FermentationButton_Click"/>
-        <Button x:Name="GrowingConditionsButton" Grid.Row="1" Grid.Column="1" Content="GrowingConditions" Click="GrowingConditionsButton_Click"/>
-        <Button x:Name="JobTitlesButton" Grid.Row="2" Grid.Column="1" Content="JobTitles" Click="JobTitlesButton_Click"/>
-        <Button x:Name="OrdersButton" Grid.Row="3" Grid.Column="1" Content="Orders" Click="OrdersButton_Click"/>
-        <Button x:Name="PartyButton" Grid.Row="4" Grid.Column="1" Content="Party" Click="PartyButton_Click"/>
-        <Button x:Name="PaymentButton" Grid.Row="5" Grid.Column="1" Content="Payment" Click="PaymentButton_Click"/>
-        
-        <Button x:Name="ShipmentsButton" Grid.Row="0" Grid.Column="2" Content="Shipments" Click="ShipmentsButton_Click"/>
-        <Button x:Name="SoilButton" Grid.Row="1" Grid.Column="2" Content="Soil" Click="SoilButton_Click"/>
-        <Button x:Name="StorageWineButton" Grid.Row="2" Grid.Column="2" Content="StorageWine" Click="StorageWineButton_Click"/>
-        <Button x:Name="WaterButton" Grid.Row="3" Grid.Column="2" Content="Water" Click="WaterButton_Click"/>
-        <Button x:Name="YieldButton" Grid.Row="4" Grid.Column="2" Content="Yield" Click="YieldButton_Click"/>
-        <Button x:Name="PaymentsOrderButton" Grid.Row="5" Grid.Column="2" Content="PaymentsOrder" Click="PaymentsOrderButton_Click"/>
+        <Button x:Name="FermentationButton" Grid.Column="1" Content="Ферментация (Fermentation)" Click="FermentationButton_Click" Height="30" Width="240"/>
+        <Button x:Name="GrowingConditionsButton" Grid.Row="1" Grid.Column="1" Content="Условия выращивания" Click="GrowingConditionsButton_Click" Height="30" Width="240"/>
+        <Button x:Name="JobTitlesButton" Grid.Row="2" Grid.Column="1" Content="Должности (Job Titles)" Click="JobTitlesButton_Click" Height="30" Width="240"/>
+        <Button x:Name="OrdersButton" Grid.Row="3" Grid.Column="1" Content="Заказы (Orders)" Click="OrdersButton_Click" Height="30" Width="240"/>
+        <Button x:Name="PartyButton" Grid.Row="4" Grid.Column="1" Content="Партии (Party)" Click="PartyButton_Click" Height="30" Width="240"/>
+        <Button x:Name="PaymentButton" Grid.Row="5" Grid.Column="1" Content="Платежи (Payment)" Click="PaymentButton_Click" Height="30" Width="240"/>
 
-        <Button x:Name="RequestsButton" Grid.Row="6" Grid.Column="1" Content="Requests" Click="RequestsButton_Click"/>
-        <Button x:Name="BackButton" Grid.Row="7" Grid.Column="1" Content="Back" Click="BackButton_Click"/>
+        <Button x:Name="ShipmentsButton" Grid.Column="2" Content="Поставки (Shipments)" Click="ShipmentsButton_Click" Height="30" Width="240"/>
+        <Button x:Name="SoilButton" Grid.Row="1" Grid.Column="2" Content="Почва (Soil)" Click="SoilButton_Click" Height="30" Width="240"/>
+        <Button x:Name="StorageWineButton" Grid.Row="2" Grid.Column="2" Content="Хранение вина" Click="StorageWineButton_Click" Height="30" Width="240"/>
+        <Button x:Name="WaterButton" Grid.Row="3" Grid.Column="2" Content="Вода (Water)" Click="WaterButton_Click" Height="30" Width="240"/>
+        <Button x:Name="YieldButton" Grid.Row="4" Grid.Column="2" Content="Урожай (Yield)" Click="YieldButton_Click" Height="30" Width="240"/>
+        <Button x:Name="PaymentsOrderButton" Grid.Row="5" Grid.Column="2" Content="Платежи по заказам" Click="PaymentsOrderButton_Click" Height="30" Width="240"/>
+
+        <Button x:Name="RequestsButton" Grid.Row="6" Grid.Column="1" Content="Запросы (Requests)" Click="RequestsButton_Click" Height="30" Width="240"/>
+        <Button x:Name="BackButton" Grid.Row="7" Grid.Column="1" Content="Вернуться (Back)" Click="BackButton_Click" Height="30" Width="240"/>
     </Grid>
 </Page>

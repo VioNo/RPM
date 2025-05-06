@@ -32,8 +32,6 @@ namespace RPM
         private void ApplyFilters()
         {
             var filteredClients = _allClients.AsEnumerable();
-
-            // Apply search filter (Name or Surname)
             if (!string.IsNullOrWhiteSpace(SearchTextBox.Text))
             {
                 string searchText = SearchTextBox.Text.ToLower();
@@ -41,15 +39,12 @@ namespace RPM
                     (c.Name != null && c.Name.ToLower().Contains(searchText)) ||
                     (c.Surname != null && c.Surname.ToLower().Contains(searchText)));
             }
-
-            // Apply email filter
             if (!string.IsNullOrWhiteSpace(EmailFilterTextBox.Text))
             {
                 string emailFilter = EmailFilterTextBox.Text.ToLower();
                 filteredClients = filteredClients.Where(c =>
                     c.Email != null && c.Email.ToLower().Contains(emailFilter));
             }
-
             ListViewClients.ItemsSource = filteredClients.ToList();
         }
 
@@ -75,7 +70,7 @@ namespace RPM
         private int GetFirstDigitInPhone(string phone)
         {
             if (string.IsNullOrWhiteSpace(phone))
-                return int.MaxValue; // Put empty phones at the end
+                return int.MaxValue;
 
             var match = Regex.Match(phone, @"\d");
             return match.Success ? int.Parse(match.Value) : int.MaxValue;

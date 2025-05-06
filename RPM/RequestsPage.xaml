@@ -28,9 +28,13 @@
             <TextBox x:Name="YearTextBox" Width="60" Margin="5" 
                      Text="{Binding SelectedYear, UpdateSourceTrigger=PropertyChanged}"/>
 
-            <Label Content="Месяц:" VerticalAlignment="Center" Margin="10,0,0,0"/>
-            <TextBox x:Name="MonthTextBox" Width="60" Margin="5" 
-                     Text="{Binding SelectedMonth, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label Content="Начальный месяц:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            <TextBox x:Name="StartMonthTextBox" Width="60" Margin="5" 
+                     Text="{Binding StartMonth, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label Content="Конечный месяц:" VerticalAlignment="Center" Margin="10,0,0,0"/>
+            <TextBox x:Name="EndMonthTextBox" Width="60" Margin="5" 
+                     Text="{Binding EndMonth, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
         <!-- Панель с кнопками запросов -->
@@ -39,10 +43,10 @@
                     Command="{Binding YieldCommand}"
                     Margin="5" Padding="10" Width="250"/>
 
-            <Button Content="Ферментация за выбранный месяц" 
-                    Command="{Binding FermentationCommand}"
+            <Button Content="Отчет по заказам" 
+                    Command="{Binding OrdersReportCommand}"
                     Margin="5" Padding="10" Width="290"/>
-            <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5" />
+            <Button x:Name="Back" Content="Назад" Click="BackButton_Click" Margin="5" />
         </StackPanel>
 
         <!-- Результаты запроса -->
@@ -61,6 +65,5 @@
                 <ProgressBar Width="100" Height="20" IsIndeterminate="{Binding IsBusy}"/>
             </StatusBarItem>
         </StatusBar>
-        
     </Grid>
 </Page>

@@ -20,8 +20,6 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
-        <!-- Search and Filter Controls -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
             <TextBox x:Name="SearchTextBox" Width="200" Margin="5" 
                      TextChanged="SearchTextBox_TextChanged" 
@@ -32,8 +30,6 @@
             <Button Content="Sort by Phone" Click="SortByPhone_Click" Margin="5"
                     ToolTip="Sort by first digit in phone number"/>
         </StackPanel>
-
-        <!-- Clients List -->
         <ListView Name="ListViewClients" Grid.Row="1" 
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                  HorizontalAlignment="Stretch">
@@ -46,8 +42,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-
-        <!-- Action Buttons -->
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5" />
             <Button Content="Add" Click="AddButton_Click" Margin="5"/>

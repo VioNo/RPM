@@ -48,9 +48,9 @@
             <TextBlock Text="Phone:" Margin="5" />
             <TextBox Name="PhoneTextBox" Width="200" Margin="5" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Margin="0,0,0,10">
-            <Button Content="Sign Up" Name="SignUpButton"  Margin="5" Click="SignUpButton_Click" />
-            <Button Content="Sign In" Name="SignInButton" Margin="5" Click="SignInButton_Click" />
+        <StackPanel Grid.Row="4" Grid.Column="1" Margin="0,0,0,10" VerticalAlignment="Center">
+            <Button Content="Зарегистрироваться (Sign Up)" x:Name="SignUpButton" Margin="5" Click="SignUpButton_Click" Width="250"/>
+            <Button Content="Авторизоваться (Sign In)" x:Name="SignInButton" Margin="5" Click="SignInButton_Click" />
         </StackPanel>
     </Grid>
 </Page>
