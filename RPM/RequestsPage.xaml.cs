@@ -27,6 +27,11 @@ namespace RPM
             InitializeComponent();
             this.DataContext = new RequestsViewModel();
         }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new DescriptionDB());
+        }
     }
 
     public class RequestsViewModel : INotifyPropertyChanged
@@ -87,15 +92,15 @@ namespace RPM
             }
         }
 
-        public ICommand SeptemberYieldCommand { get; }
-        public ICommand JanuaryFermentationCommand { get; }
+        public ICommand YieldCommand { get; }
+        public ICommand FermentationCommand { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public RequestsViewModel()
         {
-            SeptemberYieldCommand = new RelayCommand(ExecuteSeptemberYield);
-            JanuaryFermentationCommand = new RelayCommand(ExecuteJanuaryFermentation);
+            YieldCommand = new RelayCommand(ExecuteYield);
+            FermentationCommand = new RelayCommand(ExecuteFermentation);
         }
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -103,7 +108,7 @@ namespace RPM
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void ExecuteSeptemberYield()
+        private void ExecuteYield()
         {
             if (!ValidateYearMonth()) return;
 
@@ -148,7 +153,7 @@ namespace RPM
             }
         }
 
-        private void ExecuteJanuaryFermentation()
+        private void ExecuteFermentation()
         {
             if (!ValidateYearMonth()) return;
 
@@ -159,32 +164,33 @@ namespace RPM
             {
                 using (var db = new DistilleryRassvetBase())
                 {
-                    var query = db.Fermentation
+                    // Преобразуем IDGrowingConditions в int для join
+                    var finalQuery = db.Fermentation
                         .Where(f => f.EndDate.Month == SelectedMonth && f.EndDate.Year == SelectedYear)
                         .Join(db.StorageWine,
                             f => f.IDFermentation,
                             sw => sw.IDFermentation,
-                            (f, sw) => new { f, sw })
+                            (f, sw) => new { Fermentation = f, StorageWine = sw })
                         .Join(db.Products,
-                            fsw => fsw.sw.IDParty,
+                            temp => temp.StorageWine.IDParty,
                             p => p.IDParty,
-                            (fsw, p) => new { fsw.f, fsw.sw, p })
+                            (temp, p) => new { temp.Fermentation, temp.StorageWine, Product = p })
                         .Join(db.GrowingConditions,
-                            fswp => fswp.sw.IDGrowingConditions,
+                            temp => Convert.ToInt64(temp.StorageWine.IDGrowingConditions), // Преобразуем string в int
                             gc => gc.IDGrowingConditions,
-                            (fswp, gc) => new
+                            (temp, gc) => new
                             {
-                                Название = fswp.p.Name,
-                                Дата_начала = fswp.f.StartDate,
-                                Дата_завершения = fswp.f.EndDate,
-                                Условия = gc.IDGrowingConditions,
-                                Дата_розлива = fswp.sw.ExpirationDate
+                                Название = temp.Product.Name,
+                                Дата_начала = temp.Fermentation.StartDate,
+                                Дата_завершения = temp.Fermentation.EndDate,
+                                Условия = gc.Description,
+                                Дата_розлива = temp.StorageWine.ExpirationDate
                             })
                         .OrderByDescending(x => x.Дата_завершения)
                         .ToList();
 
-                    QueryResults = ConvertToDataView(query);
-                    StatusMessage = $"Найдено {query.Count} записей о ферментации";
+                    QueryResults = ConvertToDataView(finalQuery);
+                    StatusMessage = $"Найдено {finalQuery.Count} записей о ферментации";
                 }
             }
             catch (Exception ex)
@@ -257,5 +263,8 @@ namespace RPM
         public void Execute(object parameter) => _execute();
 
         public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+
+        
     }
+
 }

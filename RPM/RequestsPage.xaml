@@ -36,12 +36,13 @@
         <!-- Панель с кнопками запросов -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
             <Button Content="Урожай за выбранный месяц" 
-                    Command="{Binding SeptemberYieldCommand}"
-                    Margin="5" Padding="10" Width="200"/>
+                    Command="{Binding YieldCommand}"
+                    Margin="5" Padding="10" Width="250"/>
 
             <Button Content="Ферментация за выбранный месяц" 
-                    Command="{Binding JanuaryFermentationCommand}"
-                    Margin="5" Padding="10" Width="200"/>
+                    Command="{Binding FermentationCommand}"
+                    Margin="5" Padding="10" Width="290"/>
+            <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5" />
         </StackPanel>
 
         <!-- Результаты запроса -->
@@ -54,11 +55,12 @@
         <!-- Статус бар -->
         <StatusBar Grid.Row="3">
             <StatusBarItem>
-                <TextBlock Text="{Binding StatusMessage}"/>
+                <TextBlock Text="{Binding StatusMessage}" VerticalAlignment="Top" Width="650"/>
             </StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
                 <ProgressBar Width="100" Height="20" IsIndeterminate="{Binding IsBusy}"/>
             </StatusBarItem>
         </StatusBar>
+        
     </Grid>
 </Page>

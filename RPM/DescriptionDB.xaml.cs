@@ -119,5 +119,10 @@ namespace RPM
         {
             NavigationService.Navigate(new PaymentsOrderPage());
         }
+
+        private void RequestsButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new RequestsPage());
+        }
     }
 }
