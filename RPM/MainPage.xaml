@@ -52,6 +52,5 @@
             <Button Content="Sign Up" Name="SignUpButton"  Margin="5" Click="SignUpButton_Click" />
             <Button Content="Sign In" Name="SignInButton" Margin="5" Click="SignInButton_Click" />
         </StackPanel>
-        <Button x:Name="DBButton" Content="To DataBase" Grid.Row="5" Grid.Column="1" Click="DBButton_Click"  />
     </Grid>
 </Page>

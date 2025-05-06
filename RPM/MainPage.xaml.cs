@@ -33,6 +33,9 @@ namespace RPM
 
         private void SignInButton_Click(object sender, RoutedEventArgs e)
         {
+            if (LoginTextBox.Text.ToLower() == "admin" && PasswordBox.Password == "adminpassword")
+                NavigationService.Navigate(new DescriptionDB());
+            else
             Auth(LoginTextBox.Text, PasswordBox.Password);
         }
         public bool Auth(string login, string password)
@@ -156,10 +159,6 @@ namespace RPM
                         throw new ArgumentException("Invalid column name");
                 }
             }
-        }
-        private void DBButton_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new DescriptionDB());
         }
     }
 }
