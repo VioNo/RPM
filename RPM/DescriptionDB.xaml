@@ -55,6 +55,7 @@
         <Button x:Name="PaymentsOrderButton" Grid.Row="5" Grid.Column="2" Content="Платежи по заказам" Click="PaymentsOrderButton_Click" Height="30" Width="240"/>
 
         <Button x:Name="RequestsButton" Grid.Row="6" Grid.Column="1" Content="Запросы (Requests)" Click="RequestsButton_Click" Height="30" Width="240"/>
+        <Button x:Name="GraphsButton" Grid.Row="6" Grid.Column="2" Content="Графики (Graphs)" Click="GraphsButton_Click" Height="30" Width="240"/>
         <Button x:Name="BackButton" Grid.Row="7" Grid.Column="1" Content="Вернуться (Back)" Click="BackButton_Click" Height="30" Width="240"/>
     </Grid>
 </Page>

@@ -124,5 +124,10 @@ namespace RPM
         {
             NavigationService.Navigate(new RequestsPage());
         }
+
+        private void GraphsButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new GraphsPage());
+        }
     }
 }

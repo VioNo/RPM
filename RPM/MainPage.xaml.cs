@@ -160,5 +160,10 @@ namespace RPM
                 }
             }
         }
+
+        private void DescriptionButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new DescriptionDB());
+        }
     }
 }

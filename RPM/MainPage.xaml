@@ -52,5 +52,7 @@
             <Button Content="Зарегистрироваться (Sign Up)" x:Name="SignUpButton" Margin="5" Click="SignUpButton_Click" Width="250"/>
             <Button Content="Авторизоваться (Sign In)" x:Name="SignInButton" Margin="5" Click="SignInButton_Click" />
         </StackPanel>
+
+        <Button Content="Description" x:Name="DescriptionButton" Margin="5" Click="DescriptionButton_Click" Width="250" Grid.Row="5" Grid.Column="1"/>
     </Grid>
 </Page>
