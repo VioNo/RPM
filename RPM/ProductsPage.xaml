@@ -63,7 +63,7 @@
                 <GridView>
                     <GridViewColumn Header="ID продукта" DisplayMemberBinding="{Binding IDProduct}" Width="auto"/>
                     <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" Width="auto"/>
-                    <GridViewColumn Header="Себестоимость" DisplayMemberBinding="{Binding primecost}" Width="auto"/>
+                    <GridViewColumn Header="Себестоимость" DisplayMemberBinding="{Binding PrimeCost}" Width="auto"/>
                     <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}" Width="auto"/>
                     <GridViewColumn Header="ID партии" DisplayMemberBinding="{Binding IDParty}" Width="auto"/>
                     <GridViewColumn Header="ID склада" DisplayMemberBinding="{Binding IDStorageWine}" Width="auto"/>

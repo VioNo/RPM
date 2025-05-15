@@ -298,5 +298,10 @@ namespace RPM
                 if (wordApp != null) Marshal.ReleaseComObject(wordApp);
             }
         }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new DescriptionDB());
+        }
     }
 }

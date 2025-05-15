@@ -33,10 +33,11 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
                 <Button Name="BtnExcel" Content="Экспорт в Excel" Margin="5" Click="BtnExcel_Click"/>
                 <Button Name="BtnWord" Content="Экспорт в Word" Margin="5" Click="BtnWord_Click"/>
+                <Button Name="Back" Content="Вернуться" Margin="5" Click="Back_Click"/>
             </StackPanel>
         </StackPanel>
 
-        <WindowsFormsHost Grid.Row="1" Margin="10">
+        <WindowsFormsHost Grid.Row="1" Margin="10" Height="260" VerticalAlignment="Top">
             <charts:Chart x:Name="ChartPayments">
                 <charts:Chart.Legends>
                     <charts:Legend/>

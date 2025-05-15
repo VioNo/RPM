@@ -45,14 +45,9 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDOrders}" Width="auto"/>
-                    <GridViewColumn Header="Client" Width="auto">
-                        <GridViewColumn.DisplayMemberBinding>
-                            <Binding Path="Clients.Name" StringFormat="{}{0} {1}" 
-                                     ConverterParameter="Surname"/>
-                        </GridViewColumn.DisplayMemberBinding>
-                    </GridViewColumn>
+                    <GridViewColumn Header="Client" Width="auto" DisplayMemberBinding="{Binding Clients.Name}"/>
                     <GridViewColumn Header="Product" DisplayMemberBinding="{Binding Products.Name}" Width="auto"/>
-                    <GridViewColumn Header="Employee" DisplayMemberBinding="{Binding Employees.Name}" Width="auto"/>
+                    <GridViewColumn Header="Employee" DisplayMemberBinding="{Binding Employees.FullName}" Width="auto"/>
                     <GridViewColumn Header="Count" DisplayMemberBinding="{Binding Count}" Width="auto"/>
                     <GridViewColumn Header="Date" DisplayMemberBinding="{Binding DateOrder, StringFormat={}{0:dd.MM.yyyy}}" Width="auto"/>
                     <GridViewColumn Header="Sum" DisplayMemberBinding="{Binding Sum, StringFormat={}{0:C}}" Width="auto"/>
