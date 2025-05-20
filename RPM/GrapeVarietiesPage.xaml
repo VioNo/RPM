@@ -48,7 +48,6 @@
                   HorizontalAlignment="Stretch">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID сорта" DisplayMemberBinding="{Binding IDGrapeVarieties}" Width="auto"/>
                     <GridViewColumn Header="Название сорта" DisplayMemberBinding="{Binding NameGrapeVarieties}" Width="auto"/>
                     <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}" Width="auto"/>
                 </GridView>

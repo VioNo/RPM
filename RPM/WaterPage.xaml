@@ -34,7 +34,6 @@
                  HorizontalAlignment="Stretch">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDWater}" Width="auto"/>
                     <GridViewColumn Header="Description" DisplayMemberBinding="{Binding WaterDescription}" Width="auto"/>
                 </GridView>
             </ListView.View>

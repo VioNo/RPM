@@ -38,7 +38,6 @@
                  HorizontalAlignment="Stretch">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDGrowingConditions}" Width="auto"/>
                     <GridViewColumn Header="Grape Variety" DisplayMemberBinding="{Binding IDGrapeVarieties}" Width="auto"/>
                     <GridViewColumn Header="Soil" DisplayMemberBinding="{Binding IDSoil}" Width="auto"/>
                     <GridViewColumn Header="Water" DisplayMemberBinding="{Binding IDWater}" Width="auto"/>

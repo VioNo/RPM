@@ -38,7 +38,6 @@
                  HorizontalAlignment="Stretch">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDParty}" Width="auto"/>
                     <GridViewColumn Header="Description" DisplayMemberBinding="{Binding PartyDescription}" Width="auto"/>
                     <GridViewColumn Header="Count" DisplayMemberBinding="{Binding Count}" Width="auto"/>
                     <GridViewColumn Header="Measure" DisplayMemberBinding="{Binding Measure}" Width="auto"/>

@@ -46,7 +46,6 @@
         <!-- Data Grid -->
         <DataGrid Grid.Row="1" Name="DataGridStorage" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding IDStorage}" Width="Auto"/>
                 <DataGridTextColumn Header="Адрес" Binding="{Binding Address}" Width="*"/>
                 <DataGridTextColumn Header="Заполненность" Binding="{Binding Fullness}" Width="Auto"/>
             </DataGrid.Columns>

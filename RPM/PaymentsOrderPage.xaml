@@ -39,7 +39,6 @@
                  HorizontalAlignment="Stretch">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Order ID" DisplayMemberBinding="{Binding IDOrders}" Width="auto"/>
                     <GridViewColumn Header="Sum" DisplayMemberBinding="{Binding Sum, StringFormat={}{0:C}}" Width="auto"/>
                     <GridViewColumn Header="Payment Date" DisplayMemberBinding="{Binding DatePayments, StringFormat={}{0:dd.MM.yyyy}}" Width="auto"/>
                     <GridViewColumn Header="Payment Method" DisplayMemberBinding="{Binding Orders.Payment.PaymentMethod}" Width="auto"/>

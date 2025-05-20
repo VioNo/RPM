@@ -33,7 +33,7 @@ namespace RPM
 
         private void SignInButton_Click(object sender, RoutedEventArgs e)
         {
-            if (LoginTextBox.Text.ToLower() == "admin" && PasswordBox.Password == "adminpassword")
+            if (LoginTextBox.Text.ToLower() == "admin" && PasswordBox.Password == "adminpassword") // вы убили преподавателя этим фрагментом кода!!!ы
                 NavigationService.Navigate(new DescriptionDB());
             else
             Auth(LoginTextBox.Text, PasswordBox.Password);

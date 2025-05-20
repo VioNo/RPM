@@ -38,7 +38,6 @@
                  HorizontalAlignment="Stretch">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDPayment}" Width="auto"/>
                     <GridViewColumn Header="Method" DisplayMemberBinding="{Binding PaymentMethod}" Width="auto"/>
                     <GridViewColumn Header="Orders" Width="auto">
                         <GridViewColumn.DisplayMemberBinding>

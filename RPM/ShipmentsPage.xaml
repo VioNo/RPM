@@ -42,7 +42,6 @@
                  HorizontalAlignment="Stretch">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDShipment}" Width="auto"/>
                     <GridViewColumn Header="Date" DisplayMemberBinding="{Binding DateShipment, StringFormat={}{0:dd.MM.yyyy}}" Width="auto"/>
                     <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Amount}" Width="auto"/>
                     <GridViewColumn Header="Party" DisplayMemberBinding="{Binding Party.PartyDescription}" Width="auto"/>

@@ -39,7 +39,6 @@
                  HorizontalAlignment="Stretch">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDStorageWine}" Width="auto"/>
                     <GridViewColumn Header="Expiration Date" DisplayMemberBinding="{Binding ExpirationDate, StringFormat={}{0:dd.MM.yyyy}}" Width="auto"/>
                     <GridViewColumn Header="Fermentation" DisplayMemberBinding="{Binding Fermentation.Description}" Width="auto"/>
                     <GridViewColumn Header="Party" DisplayMemberBinding="{Binding Party.PartyDescription}" Width="auto"/>

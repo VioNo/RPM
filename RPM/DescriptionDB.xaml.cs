@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 namespace RPM
 {
@@ -128,6 +129,11 @@ namespace RPM
         private void GraphsButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new GraphsPage());
+        }
+
+        private void spr_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("справочки.chm");
         }
     }
 }

@@ -39,7 +39,6 @@
                  HorizontalAlignment="Stretch">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDYield}" Width="auto"/>
                     <GridViewColumn Header="Date" DisplayMemberBinding="{Binding DateYield, StringFormat={}{0:dd.MM.yyyy}}" Width="auto"/>
                     <GridViewColumn Header="Grape Variety" DisplayMemberBinding="{Binding GrapeVarieties.NameGrapeVarieties}" Width="auto"/>
                     <GridViewColumn Header="Harvest (kg)" DisplayMemberBinding="{Binding Harvest}" Width="auto"/>

@@ -33,7 +33,6 @@
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="40,10,40,40">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDSoil}" Width="auto"/>
                     <GridViewColumn Header="Description" DisplayMemberBinding="{Binding SoilDescription}" Width="auto"/>
                 </GridView>
             </ListView.View>

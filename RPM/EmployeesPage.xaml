@@ -51,7 +51,6 @@
         <ListView Name="ListViewEmployees" Grid.Row="1">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDEmployee}" Width="auto"/>
                     <GridViewColumn Header="ФИО" DisplayMemberBinding="{Binding FullName}" Width="auto"/>
                     <GridViewColumn Header="Должность" DisplayMemberBinding="{Binding JobTitles.JobTitle}" Width="auto"/>
                     <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Phone}" Width="auto"/>

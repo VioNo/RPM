@@ -33,10 +33,10 @@
         <!-- Climate List -->
         <ListView Name="ListViewClimate" Grid.Row="1" 
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                 HorizontalAlignment="Stretch">
+                 HorizontalAlignment="Stretch" SelectionChanged="ListViewClimate_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDClimate}" Width="auto"/>
+                    
                     <GridViewColumn Header="Description" DisplayMemberBinding="{Binding ClimateDescription}" Width="auto"/>
                 </GridView>
             </ListView.View>

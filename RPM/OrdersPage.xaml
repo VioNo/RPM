@@ -44,7 +44,6 @@
                  HorizontalAlignment="Stretch">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDOrders}" Width="auto"/>
                     <GridViewColumn Header="Client" Width="auto" DisplayMemberBinding="{Binding Clients.Name}"/>
                     <GridViewColumn Header="Product" DisplayMemberBinding="{Binding Products.Name}" Width="auto"/>
                     <GridViewColumn Header="Employee" DisplayMemberBinding="{Binding Employees.FullName}" Width="auto"/>
