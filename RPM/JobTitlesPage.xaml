@@ -38,7 +38,6 @@
                  HorizontalAlignment="Stretch">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding IDJobTitle}" Width="auto"/>
                     <GridViewColumn Header="Job Title" DisplayMemberBinding="{Binding JobTitle}" Width="auto"/>
                     <GridViewColumn Header="Employee Count" Width="auto">
                         <GridViewColumn.DisplayMemberBinding>

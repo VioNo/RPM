@@ -21,61 +21,63 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Search and Filter Panel -->
+        <!-- Панель поиска и фильтров -->
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="5">
-            <!-- Search by Name -->
+            <!-- Поиск по названию -->
             <TextBox x:Name="SearchTextBox" Width="200" Margin="5" 
                      TextChanged="SearchTextBox_TextChanged" 
                      Tag="Поиск по названию..."
                      ToolTip="Введите текст для поиска по названию продукта"/>
 
-            <!-- Sort Options -->
+            <!-- Сортировка -->
             <ComboBox x:Name="SortComboBox" Width="200" Margin="5" 
                       SelectionChanged="SortComboBox_SelectionChanged"
                       ToolTip="Выберите способ сортировки"
                       SelectedIndex="0">
-                <ComboBoxItem Content="Сортировка по ID (возр.)" Tag="id_asc"/>
-                <ComboBoxItem Content="Сортировка по ID (убыв.)" Tag="id_desc"/>
-                <ComboBoxItem Content="Сортировка по названию (А-Я)" Tag="name_asc"/>
-                <ComboBoxItem Content="Сортировка по названию (Я-А)" Tag="name_desc"/>
-                <ComboBoxItem Content="Сортировка по себестоимости (возр.)" Tag="cost_asc"/>
-                <ComboBoxItem Content="Сортировка по себестоимости (убыв.)" Tag="cost_desc"/>
+                <ComboBoxItem Content="По ID (возр.)" Tag="id_asc"/>
+                <ComboBoxItem Content="По ID (убыв.)" Tag="id_desc"/>
+                <ComboBoxItem Content="По названию (А-Я)" Tag="name_asc"/>
+                <ComboBoxItem Content="По названию (Я-А)" Tag="name_desc"/>
+                <ComboBoxItem Content="По себестоимости (возр.)" Tag="cost_asc"/>
+                <ComboBoxItem Content="По себестоимости (убыв.)" Tag="cost_desc"/>
             </ComboBox>
 
-            <!-- Filter by Party ID -->
+            <!-- Фильтр по ID партии -->
             <TextBox x:Name="PartyFilterTextBox" Width="120" Margin="5" 
                      TextChanged="FilterTextBox_TextChanged"
                      Tag="Фильтр по ID партии"
                      ToolTip="Введите ID партии для фильтрации"/>
 
-            <!-- Filter by Storage ID -->
+            <!-- Фильтр по ID склада -->
             <TextBox x:Name="StorageFilterTextBox" Width="120" Margin="5" 
                      TextChanged="FilterTextBox_TextChanged"
                      Tag="Фильтр по ID склада"
                      ToolTip="Введите ID склада для фильтрации"/>
+
+            <!-- Кнопка очистки фильтров -->
+            <Button Content="Очистить всё" Click="ClearFilters_Click" Margin="5"
+                    ToolTip="Сбросить все фильтры и сортировку"/>
         </StackPanel>
 
-        <!-- ListView -->
+        <!-- Список продуктов -->
         <ListView Name="ListViewProducts" Grid.Row="1" 
                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                   ToolTip="Список продуктов. Выделите строку для редактирования или удаления">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" Width="auto"/>
-                    <GridViewColumn Header="Себестоимость" DisplayMemberBinding="{Binding PrimeCost}" Width="auto"/>
+                    <GridViewColumn Header="Себестоимость" DisplayMemberBinding="{Binding PrimeCost, StringFormat={}{0:N2}}" Width="auto"/>
                     <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}" Width="auto"/>
-                    <GridViewColumn Header="ID партии" DisplayMemberBinding="{Binding IDParty}" Width="auto"/>
-                    <GridViewColumn Header="ID склада" DisplayMemberBinding="{Binding IDStorageWine}" Width="auto"/>
                 </GridView>
             </ListView.View>
         </ListView>
 
-        <!-- Buttons Panel -->
+        <!-- Панель кнопок -->
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <Button x:Name="Back" Content="Back" Click="BackButton_Click" Margin="5" />
-            <Button Content="Add" Click="AddButton_Click" Margin="5"/>
-            <Button Content="Delete" Click="DeleteButton_Click" Margin="5"/>
-            <Button Content="Update" Click="UpdateButton_Click" Margin="5"/>
+            <Button x:Name="Back" Content="Назад" Click="BackButton_Click" Margin="5" />
+            <Button Content="Добавить" Click="AddButton_Click" Margin="5"/>
+            <Button Content="Удалить" Click="DeleteButton_Click" Margin="5"/>
+            <Button Content="Изменить" Click="UpdateButton_Click" Margin="5"/>
         </StackPanel>
     </Grid>
 </Page>

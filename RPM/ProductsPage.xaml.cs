@@ -41,7 +41,10 @@ namespace RPM
             {
                 using (var context = new DistilleryRassvetBase())
                 {
-                    _allProducts = context.Products.ToList() ?? new List<Products>();
+                    _allProducts = context.Products
+                         // Changed from p.IDStorage.Storage to p.Storage
+                        .ToList();
+
                     ApplyFiltersAndSort();
                 }
             }
@@ -65,14 +68,14 @@ namespace RPM
             {
                 IEnumerable<Products> result = _allProducts.AsEnumerable();
 
-                // Apply search filter
+                // Применяем поиск
                 if (!string.IsNullOrWhiteSpace(_currentSearch))
                 {
                     result = result.Where(p => p.Name != null &&
                                            p.Name.ToLower().Contains(_currentSearch.ToLower()));
                 }
 
-                // Apply party ID filter
+                // Фильтр по партии
                 if (!string.IsNullOrWhiteSpace(_currentPartyFilter))
                 {
                     if (int.TryParse(_currentPartyFilter, out int partyId))
@@ -81,7 +84,7 @@ namespace RPM
                     }
                 }
 
-                // Apply storage ID filter
+                // Фильтр по складу
                 if (!string.IsNullOrWhiteSpace(_currentStorageFilter))
                 {
                     if (int.TryParse(_currentStorageFilter, out int storageId))
@@ -90,7 +93,7 @@ namespace RPM
                     }
                 }
 
-                // Apply sorting
+                // Сортировка
                 switch (_currentSort)
                 {
                     case "id_asc":
@@ -125,6 +128,20 @@ namespace RPM
                               MessageBoxButton.OK,
                               MessageBoxImage.Error);
             }
+        }
+
+        private void ClearFilters_Click(object sender, RoutedEventArgs e)
+        {
+            // Сбрасываем все фильтры
+            SearchTextBox.Text = string.Empty;
+            PartyFilterTextBox.Text = string.Empty;
+            StorageFilterTextBox.Text = string.Empty;
+
+            // Сбрасываем сортировку на значение по умолчанию
+            SortComboBox.SelectedIndex = 0;
+
+            // Обновляем данные
+            LoadProducts();
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)

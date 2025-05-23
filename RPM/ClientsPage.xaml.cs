@@ -199,5 +199,13 @@ namespace RPM
         {
             NavigationService.Navigate(new DescriptionDB());
         }
+
+        private void ClearFilters_Click(object sender, RoutedEventArgs e)
+        { 
+            SearchTextBox.Text = string.Empty;
+            EmailFilterTextBox.Text = string.Empty;
+
+            LoadClients();
+        }
     }
 }

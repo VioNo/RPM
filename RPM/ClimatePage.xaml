@@ -33,7 +33,7 @@
         <!-- Climate List -->
         <ListView Name="ListViewClimate" Grid.Row="1" 
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                 HorizontalAlignment="Stretch" SelectionChanged="ListViewClimate_SelectionChanged">
+                 HorizontalAlignment="Stretch">
             <ListView.View>
                 <GridView>
                     

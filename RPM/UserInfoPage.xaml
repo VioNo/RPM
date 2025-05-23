@@ -14,9 +14,16 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
-    
+
     <Grid Margin="10">
-        <StackPanel Orientation="Vertical" Height="400" VerticalAlignment="Top" Width="600">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Vertical" VerticalAlignment="Top" Width="600">
             <TextBlock Text="ID:" FontWeight="Bold" />
             <TextBlock Name="IdTextBlock" Margin="5" />
             <TextBlock Text="Login:" FontWeight="Bold" />
@@ -26,8 +33,22 @@
             <TextBlock Text="Email:" FontWeight="Bold" />
             <TextBlock Name="EmailTextBlock" Margin="5" />
         </StackPanel>
-        <Button x:Name="Back" Content="Вернуться (Back)" Click="BackButton_Click" Margin="5" />
-        <Frame x:Name="userInfoPage" Grid.ColumnSpan="5"  Grid.RowSpan="7"/>
-        
+
+        <TextBlock Grid.Row="1" Text="Ваши заказы:" FontWeight="Bold" Margin="0,10,0,5"/>
+
+        <DataGrid Grid.Row="2" x:Name="OrdersDataGrid" AutoGenerateColumns="False" 
+                  IsReadOnly="True" Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Номер заказа" Binding="{Binding IDOrders}" Width="auto"/>
+                <DataGridTextColumn Header="Дата заказа" Binding="{Binding DateOrder, StringFormat=\{0:dd.MM.yyyy\}}" Width="auto"/>
+                <DataGridTextColumn Header="Товар" Binding="{Binding Products.Name}" Width="auto"/>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Count}" Width="auto"/>
+                <DataGridTextColumn Header="Сумма" Binding="{Binding Sum, StringFormat=\{0:N2\} руб.}" Width="auto"/>
+                <DataGridTextColumn Header="Статус оплаты" Binding="{Binding PaymentStatus}" Width="auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Grid.Row="3" x:Name="Back" Content="Вернуться (Back)" 
+                Click="BackButton_Click" Margin="5" HorizontalAlignment="Left"/>
     </Grid>
 </Page>

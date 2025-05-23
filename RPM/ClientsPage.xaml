@@ -29,6 +29,8 @@
                      ToolTip="Filter by Email"/>
             <Button Content="Sort by Phone" Click="SortByPhone_Click" Margin="5"
                     ToolTip="Sort by first digit in phone number"/>
+            <Button Content="Clear Filters" Click="ClearFilters_Click" Margin="5"
+                    ToolTip="Clear all filters and sorting"/>
         </StackPanel>
         <ListView Name="ListViewClients" Grid.Row="1" 
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 

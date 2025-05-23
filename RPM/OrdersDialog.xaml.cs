@@ -156,43 +156,58 @@ namespace RPM
         {
             if (ClientComboBox.SelectedValue == null)
             {
-                MessageBox.Show("Please select a client.");
+                MessageBox.Show("Пожалуйста, выберите клиента.");
                 return false;
             }
 
             if (ProductComboBox.SelectedValue == null)
             {
-                MessageBox.Show("Please select a product.");
+                MessageBox.Show("Пожалуйста, выберите продукт.");
                 return false;
             }
 
             if (EmployeeComboBox.SelectedValue == null)
             {
-                MessageBox.Show("Please select an employee.");
+                MessageBox.Show("Пожалуйста, выберите сотрудника.");
                 return false;
             }
 
             if (!int.TryParse(CountTextBox.Text, out int count) || count <= 0)
             {
-                MessageBox.Show("Please enter a valid positive count.");
+                MessageBox.Show("Пожалуйста, введите корректное количество (положительное число).");
                 return false;
             }
 
+            // Проверки даты
             if (!DatePicker.SelectedDate.HasValue)
             {
-                MessageBox.Show("Please select a date.");
+                MessageBox.Show("Пожалуйста, выберите дату заказа.");
+                return false;
+            }
+
+            // Дата заказа не может быть в будущем
+            if (DatePicker.SelectedDate > DateTime.Today)
+            {
+                MessageBox.Show("Дата заказа не может быть в будущем.");
+                return false;
+            }
+
+            // Минимальная дата заказа (например, не старше 1 года)
+            if (DatePicker.SelectedDate < DateTime.Today.AddYears(-1))
+            {
+                MessageBox.Show("Дата заказа не может быть старше одного года.");
                 return false;
             }
 
             if (!decimal.TryParse(SumTextBox.Text, out decimal sum) || sum <= 0)
             {
-                MessageBox.Show("Please enter a valid positive sum.");
+                MessageBox.Show("Пожалуйста, введите корректную сумму (положительное число).");
                 return false;
             }
 
             if (PaymentComboBox.SelectedValue == null)
             {
-                MessageBox.Show("Please select a payment method.");
+                MessageBox.Show("Пожалуйста, выберите способ оплаты.");
                 return false;
             }
 

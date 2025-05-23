@@ -191,6 +191,14 @@ namespace RPM
                 return false;
             }
 
+            // Проверка что между датами прошла минимум неделя (7 дней)
+            TimeSpan duration = EndDatePicker.SelectedDate.Value - StartDatePicker.SelectedDate.Value;
+            if (duration.TotalDays < 7)
+            {
+                MessageBox.Show("Продолжительность брожения должна быть не менее 7 дней.");
+                return false;
+            }
+
             if (!decimal.TryParse(TemperatureTextBox.Text, out decimal temp) || temp <= 0)
             {
                 MessageBox.Show("Пожалуйста, введите корректную положительную температуру.");
